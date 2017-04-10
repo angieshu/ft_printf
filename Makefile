@@ -18,23 +18,28 @@ LIBF = ./libft
 
 INCL = libftprintf.h
 
-SRCS = *.c
+SRCS = ./src
 
-CCFL = gcc -Wall -Wextra -Werror
+CCFL = -Wall -Wextra -Werror
+
+COMP = $(LIBFT_COMP) $(PRINTF_COMP)
 
 all: $(NAME)
 
-$(NAME):
-	@make -C $(LIBF) re
-	@$(CCFL) -c $(SRCS)
-	@ar rc $(NAME) *.o
+$(NAME): $(COMP)
+	@ar rc $(NAME) $(COMP)
+	@ranlib $(NAME)
+
+$(LIBFT_COMP): %.o: $(LIBF)/%.c
+	@gcc -c $(CCFL) -I $(LIBF) $< -o $@
+
+$(PRINTF_COMP): %.o: $(SRCS)/%.c
+	@gcc -c $(CCFL) -I $(LIBF) -I $(SRCS) $< -o $@
 
 clean:
-	@make -C $(LIBF) clean
-	@rm -rf *.o
+	@bin/rm -rf $(COMP)
 
 fclean: clean
-	@make -C $(LIBF) fclean
 	@/bin/rm -f $(NAME)
 
 re: fclean all
