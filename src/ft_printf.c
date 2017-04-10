@@ -27,8 +27,6 @@ int ft_count_num(char *p)
 
 int	ft_identification(char *p, va_list ap, int precision)
 {
-	int i;
-
 	if (*p == 'c' || *p == 'C')
 		return (ft_pc(ap));
 	if (*p == 'd' || *p == 'i')
@@ -57,8 +55,8 @@ int	ft_identification(char *p, va_list ap, int precision)
 	// 	i = 
 	// else if (*p == 'a')
 	// else if (*p == 'A')
-	else if (*p == '%')
-		i = ft_pper();
+	if (*p == '%')
+		return (ft_pper());
 	// else if (*p == '+')
 	// 	i = 
 	// else if (*p == '-')
@@ -67,7 +65,7 @@ int	ft_identification(char *p, va_list ap, int precision)
 	// 	i = 
 	// else if (*p == '*')
 	//	i = 
-	return (i);
+	return (0);
 }
 
 int		ft_printf(const char *restrict format, ...)
