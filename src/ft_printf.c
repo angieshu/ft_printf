@@ -1,31 +1,34 @@
 #include "libftprintf.h"
 
-int ft_count_precision(char *p)
+char *ft_min_width(char *p, va_list ap, int precision, unsigned int i)
 {
-	int precision;
-	int i;
+	int k;
+	char *tmp;
+	char *tmp2;
+	char *s;
 
-	i = 1;
-	precision = 0;
-	while (*(p + i) >= '0' && *(p + i) <= '9')
-	{
-		precision = precision * 10 + *(p + i) - '0';
-		i++;
+	if (!(tmp2 = ft_identification(p, ap, precision)))
+		return (NULL);
+	if ((unsigned int)ft_strlen(tmp2) < i)
+	{	
+		k = i - ft_strlen(tmp2);
+		if (!(tmp = (char*)ft_memalloc(k + 1)))
+			return (NULL);
+		tmp[k] = 0;
+		while (k-- > 0)
+			tmp[k] = ' ';
+		s = ft_strjoin(tmp, tmp2);
+		free(tmp);
 	}
-	return (precision);
+	else
+		s = ft_strdup(tmp2);
+	if (!(ft_strlen(tmp2) == 1 && tmp2[0] == '0'))
+		free(tmp2);
+	return (s);
 }
 
-int ft_count_num(char *p)
-{
-	int i;
 
-	i = 0;
-	while (*(p + i) >= '0' && *(p + i) <= '9')
-		i++;
-	return (i);
-}
-
-int	ft_identification(char *p, va_list ap, int precision)
+char	*ft_identification(char *p, va_list ap, int precision)
 {
 	if (*p == 'c' || *p == 'C')
 		return (ft_pc(ap));
@@ -45,60 +48,89 @@ int	ft_identification(char *p, va_list ap, int precision)
 		return (ft_ps(ap, precision));
 	if (*p == 'u' || *p == 'U' || *p == 'D')
 		return (ft_pu(ap, precision));
-	if (*p == '.')
-		ft_identification(++p, ap, precision);
-	// else if (*p >= '0' && *p <= '9')
-	// 	return (ft_count_precision(&p, ap));
-	// else if (*p == 'p')
-	// 	i = 
+	if (*p == '+' || *p == '-' || *p == '#' || *p == '0' || *p == ' ')
+		return (ft_check_flag(p, ap, precision));
+	// else if (*p == '*')
 	// else if (*p == 'n')
 	// 	i = 
 	// else if (*p == 'a')
 	// else if (*p == 'A')
 	if (*p == '%')
 		return (ft_pper());
-	// else if (*p == '+')
-	// 	i = 
-	// else if (*p == '-')
-	// 	i = 
-	// else if (*p == ' ')
-	// 	i = 
-	// else if (*p == '*')
-	//	i = 
-	return (0);
+	return (NULL);
 }
 
-int		ft_printf(const char *restrict format, ...)
+char	*ft_ifnumber(char *p, va_list ap, int precision)
 {
-	va_list ap;
-	char *p;
-	int i;
-	int precision;
+	unsigned int i;
+	char *tmp;
+	char *tmp2;
 
-	i = -1;
-	precision = -1;
-	if (!format)
-		return (-1);
-	va_start(ap, format);
-	p = (char*)format;
-	while (*p != '\0')
+	if ((*p > '0' && *p <= '9') || *p == '.')
+	{
+		i = ft_atoi(p);
+		if (!(tmp = p + ft_count_num(p)))
+			return (NULL);
+		if (*tmp == '.')
+		{
+			precision = ft_atoi(tmp + 1);
+			if (!(tmp = tmp + ft_count_num(tmp + 1) + 1))
+				return (NULL);
+		}
+		tmp2 = ft_min_width(tmp, ap, precision, i);
+		if (!tmp2)
+			return(NULL);
+	}
+	else
+		if (!(tmp2 = ft_identification(p, ap, precision)))
+			return (NULL);
+	return (tmp2);
+}
+
+char	*ft_readformat(char *format, va_list ap, int precision)
+{
+	char *s;
+	char *p;
+	char *tmp;
+	char *tmp2;
+
+	p = format;
+	s = ft_strnew(1);
+	while (ft_strlen(p) > 0)
 	{
 		if (*p == '%')
 		{
 			++p;
-			if (*p == '.')
-			{
-				precision = ft_count_precision(p);
-				p += ft_count_num(p) + 2;
-			}
-			i += ft_identification(p, ap, precision) - 1;
-			precision = -1;
+			if (!(tmp = ft_ifnumber(p, ap, precision)))
+				return (NULL);
+			p += (ft_count_total_num(p));
 		}
-		else 
-			ft_putchar(*p);
-		i++;
+		else
+			tmp = ft_strsub(p, 0, 1);
+		tmp2 = s;
+		s = ft_strjoin(tmp2, tmp);
+		free(tmp2);
 		p++;
 	}
-	printf("i = %d\n",i);
+	free(tmp);
+	return (s);
+}
+ 
+int		ft_printf(const char *restrict format, ...)
+{
+	va_list ap;
+	char *s;
+	int i;
+
+	if (!format)
+		return (-1);
+	va_start(ap, format);
+	s = ft_readformat((char*)format, ap, -1);
+	va_end(ap);
+	if (s == NULL)
+		return (-1);
+	ft_putstr(s);
+	i = ft_strlen(s);
+	free(s);
 	return (i);
 }

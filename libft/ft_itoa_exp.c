@@ -1,5 +1,5 @@
 #include "libft.h"
-
+#include <stdio.h>
 static char *ft_zero(double nbr, int k)
 {
 	char *s;
@@ -30,8 +30,13 @@ static char	*ft_count_power(double nbr, int k, int sign)
 	char *tmp;
 	
 	i = 1;
-	while ((nbr = nbr / 10) >= 10)
-		i++;
+	if (nbr >= 10)
+	{
+		while ((nbr = nbr / 10) >= 10)
+			i++;
+	}
+	else
+		i = 0;
 	if (ft_round(nbr, k))
 	{
 		i++;
