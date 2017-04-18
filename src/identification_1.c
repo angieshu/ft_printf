@@ -1,100 +1,103 @@
 #include "libftprintf.h"
 
-char	*ft_pc(va_list ap)
+char	*ft_pc(va_list ap, flags *f, length *l)
 {
+
 	union data type;
 	char *s;
 
-	if (!(type.c = (char)va_arg(ap, int)))
-		return (NULL);
-	s = (char*)ft_memalloc(2);
-	s[1] = 0;
-	s[0] = type.c;
+	if ((l->l == 1 && f->conv == 'c') || f->conv == 'C')
+	{
+		type.wi = va_arg(ap, wint_t);
+		s = ft_wprint(type.wi);
 		return (s);
+	}
+	type.i = va_arg(ap, intmax_t);
+	if (!type.i)
+		f->s_size += 1;
+	s = ft_strnew(1);
+	s[0] = type.i;
+	return (s);
 }
 
-char	*ft_ps(va_list ap, int precision)
+char	*ft_pd(va_list ap, flags *f, length *l)
 {
-	union data type;
-	int i;
+	union data	type;
+	intmax_t	i;
+	char		*s;
 
-	if (!(type.s = va_arg(ap, char*)))
-		return (NULL);
-	i = ft_strlen(type.s);
-	if (precision == -1)
-		precision = i;
-	if (precision < i)
-		return (ft_strsub(type.s, 0, precision));
-	return (ft_strdup(type.s));
-}
-
-char	*ft_pd(va_list ap, int precision)
-{
-	union	data type;
-	char	*tmp;
-	int		i;
-
-	type.i = va_arg(ap, int);
+	if (f->conv == 'D')
+		l->l = 1;
+	type.i = ft_conv_len(ap, l);
 	if (type.i == 0)
 	{
-		tmp = (char*)ft_memalloc(2);
-		tmp[1] = 0;
-		tmp[0] = '0';
-		return (tmp);
+		s = ft_strnew(1);
+		s[0] = '0';
 	}
-	if (!type.i)
-		return (NULL);
-	tmp = ft_itoa_base(type.i, 10);
-	i = ft_strlen(tmp);
-	if (i < precision)
-		return (ft_precision(tmp, precision - i));
-	return (tmp);
+	else
+		s = ft_itoa_base(type.i, 10);
+	i = ft_strlen(s);
+	if (i <= f->precision)
+	{
+		if (type.i < 0)
+			f->precision += 1;
+		s = ft_precision(s, f->precision - i);
+	}
+	return (s);
 }
 
-char	*ft_po(va_list ap, int precision)
+char	*ft_po(va_list ap, flags *f, length *l)
 {
-	union	data type;
-	char	*tmp;
-	int		i;
+	union data	type;
+	intmax_t	i;
+	char		*s;
+	char		*tmp;
 
-	type.l = va_arg(ap, int);
-	if (type.l == 0)
+	if (f->conv == 'O')
+		l->l = 1;
+	type.i = ft_conv_unsigned(ap, l);
+	if (type.i == 0)
 	{
-		tmp = (char*)ft_memalloc(2);
-		tmp[0] = '0';
-		tmp[1] = 0;
-		return (tmp);
+		s = ft_strnew(1);
+		s[0] = '0';
+		return (s);
 	}
-	if (!type.l)
-		return (NULL);
-	tmp = ft_itoa_base(type.l, 8);
-	i = ft_strlen(tmp);
-	if (i < precision)
-		return (ft_precision(tmp, precision - i));
-	return (tmp);
+	s = ft_itoa_base(type.i, 8);
+	i = ft_strlen(s);
+	if (i < f->precision)
+		s = ft_precision(s, f->precision - i);
+	if (f->hash == 1)
+	{
+		tmp = s;
+		s = ft_strjoin("0", tmp);
+	}
+	return (s);
 }
 
-char	*ft_px(va_list ap, int precision, char x)
+char	*ft_px(va_list ap, flags *f, length *l)
 {
-	union	data type;
-	char	*tmp;
-	int		i;
+	union data	type;
+	intmax_t	i;
+	char		*s;
+	char		*tmp;
 
-	type.l = va_arg(ap, int);
-	if (type.l == 0)
+	type.u = ft_conv_unsigned(ap, l);
+	if (type.u == 0)
 	{
-		tmp = (char*)ft_memalloc(2);
-		tmp[1] = 0;
-		tmp[0] = '0';
-		return (tmp);
+		s = ft_strnew(2);
+		s[0] = '0';
+		return (s);
 	}
-	if (!type.l)
-		return (NULL);
-	tmp = ft_itoa_base(type.l, 16);
-	if (x == 'X')
-		ft_toupper_s(tmp);
-	i = ft_strlen(tmp);
-	if (i < precision)
-		return (ft_precision(tmp, precision - i));
-	return (tmp);
+	s = ft_itoa_base(type.u, 16);
+	i = ft_strlen(s);
+	if (i < f->precision)
+		s = ft_precision(s, f->precision - i);
+	if (f->hash == 1)
+	{
+		tmp = s;
+		s = ft_strjoin("0x", tmp);
+	}
+	if (f->conv == 'X')
+		ft_toupper_s(s);
+	return (s);
 }

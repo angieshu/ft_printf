@@ -88,7 +88,7 @@ static void	help(char *s, char *tmp, int i, int len)
 		s[--i] = '1';
 }
 
-char		*ft_itoa_negative(long long v, int b)
+char		*ft_itoa_negative(intmax_t v, int b)
 {
 	int i;
 	long len;

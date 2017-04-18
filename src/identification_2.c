@@ -1,73 +1,79 @@
 #include "libftprintf.h"
 
-char	*ft_pe(va_list ap, int precision, char e)
+char	*ft_pe(va_list ap, flags *f)
 {
-	union data type;
-	char *s;
+	union data	type;
+	char		*s;
 
-	if (!(type.d = va_arg(ap, double)))
-		return (NULL);
-	if (precision == -1)
-		precision = 6;
-	s = ft_itoa_exp(type.d, precision);
-	if (e == 'E')
+	type.d = va_arg(ap, double);
+	if (f->precision == -1)
+		f->precision = 6;
+	s = ft_itoa_exp(type.d, f->precision);
+	if (f->conv == 'E')
 		ft_toupper_s(s);
 	return (s);
 }
 
-char	*ft_pu(va_list ap, int precision)
+char	*ft_pu(va_list ap, flags *f, length *l)
 {
-	union data type;
-	char *tmp;
-	int i;
+	union data	type;
+	intmax_t	i;
+	char		*s;
 
-	if (!(type.l = va_arg(ap, long)))
-		return (NULL);
-	if (precision == 0 && type.l == 0)
-		return ("");
-	if (type.l < 0)
-		tmp = ft_itoa_negative(type.l, 10);
+	if (f->conv == 'U')
+		l->l = 1;
+	type.i = ft_conv_unsigned(ap, l);
+	if (f->precision == 0 && type.i == 0)
+	{
+		s = ft_strnew(1);
+		return (s);
+	}
+	if (type.i == 0)
+	{
+		s = ft_strnew(1);
+		s[0] = '0';
+	}
+	else if (type.i < 0)
+		s = ft_itoa_negative(type.i, 10);
 	else
-		tmp = ft_itoa_base(type.l, 10);
-	i = ft_strlen(tmp);
-	if (i < precision)
-		return (ft_precision(tmp, precision - i));
-	return (tmp);
+		s = ft_itoa_base(type.i, 10);
+	i = ft_strlen(s);
+	if (i < f->precision)
+		return (ft_precision(s, f->precision - i));
+	return (s);
 }
 
 char	*ft_pper(void)
 {
 	char *s;
 
-	s = (char*)ft_memalloc(2);
-	s[1] = 0;
+	s = ft_strnew(1);
 	s[0] = '%';
 	return (s);
 }
 
-char	*ft_pf(va_list ap, int precision)
+char	*ft_pf(va_list ap, flags *f)
 {
-	union	data type;
-	char	*s;
+	union data	type;
+	char		*s;
 
-	if (!(type.d = va_arg(ap, double)))
-		return (NULL);
-	if (precision == -1)
-		precision = 6;
-	s = ft_itoa_double(type.d, precision);
+	type.d = va_arg(ap, double);
+	if (f->precision == -1)
+		f->precision = 6;
+	s = ft_itoa_double(type.d, f->precision);
 	return (s);
 }
 
-char	*ft_pg(va_list ap, int precision, char g)
+char	*ft_pg(va_list ap, flags *f)
 {
-	union data type;
-	char *s;
+	union data	type;
+	char		*s;
 
 	type.d = va_arg(ap, double);
-	if (precision == -1)
-		precision = 6;
-	s = ft_itoa_double_g(type.d, precision);
-	if (g == 'G')
+	if (f->precision == -1)
+		f->precision = 6;
+	s = ft_itoa_double_g(type.d, f->precision);
+	if (f->conv == 'G')
 		ft_toupper_s(s);
 	return (s);
 }

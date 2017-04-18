@@ -1,6 +1,6 @@
 #include "libft.h"
 
-char	*ft_itoa_base(long long value, int base)
+char	*ft_itoa_base(intmax_t value, int base)
 {
 	char	s[17];
 	char	*result;

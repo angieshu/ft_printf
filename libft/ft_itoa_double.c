@@ -18,7 +18,7 @@ static char *zero(int k, int sign)
 	return (s);
 }
 
-static char	*build(long n, int k, int i, int sign)
+static char	*build(intmax_t n, int k, int i, int sign)
 {
 	char *n_nbr;
 

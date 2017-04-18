@@ -1,6 +1,5 @@
 #include "libftprintf.h"
 
-
 int ft_count_num(char *p)
 {
 	int i;

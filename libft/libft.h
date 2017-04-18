@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
+# include <stdint.h>
 
 typedef struct		s_list
 {
@@ -28,7 +29,7 @@ void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-char				*ft_itoa_base(long long value, int base);
+char				*ft_itoa_base(intmax_t value, int base);
 long				ft_atoi(const char *str);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
@@ -89,7 +90,7 @@ void				ft_toupper_s(char *s);
 int					ft_countnumber(long v, int b);
 char				*ft_strrev(char *str);
 long				ft_power(long n, long pow);
-char				*ft_itoa_negative(long long v, int b);
+char				*ft_itoa_negative(intmax_t v, int b);
 char				*ft_itoa_negative_decimal(char *s);
 char				*ft_itoa_double(double nbr, int k);
 long				ft_roundnbr(long n, int i);

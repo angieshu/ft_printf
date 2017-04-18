@@ -35,8 +35,10 @@ FT_COMPILED =		ft_atoi.o ft_bzero.o ft_countnumber.o ft_countword.o ft_hcf.o ft_
 					ft_strrchr.o ft_strrev.o ft_strsplit.o ft_strstr.o ft_strsub.o ft_strtrim.o \
 					ft_tolower.o ft_toupper.o ft_toupper_s.o
 
-PRINTF_COMPILED =	ft_precision.o ft_printf.o identification_1.o identification_2.o count_position.o \
-					flags.o flags_0.o
+PRINTF_COMPILED =	check_format.o ft_printf.o identification_1.o identification_2.o identification_3.o \
+ 					count_position.o flags_hash.o flags_set.o flags_others.o ft_build.o length_precision.o \
+ 					read_wchar.o min_width.o ../main.o
+
 COMPILED =			$(FT_COMPILED) $(PRINTF_COMPILED)
 
 all: $(NAME)
