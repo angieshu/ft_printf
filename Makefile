@@ -37,7 +37,7 @@ FT_COMPILED =		ft_atoi.o ft_bzero.o ft_countnumber.o ft_countword.o ft_hcf.o ft_
 
 PRINTF_COMPILED =	check_format.o ft_printf.o identification_1.o identification_2.o identification_3.o \
  					count_position.o flags_hash.o flags_set.o flags_others.o ft_build.o length_precision.o \
- 					read_wchar.o min_width.o ../main.o
+ 					read_wchar.o min_width.o
 
 COMPILED =			$(FT_COMPILED) $(PRINTF_COMPILED)
 
