@@ -37,7 +37,7 @@ char	*ft_pu(va_list *ap, flags *f, length *l)
 	// else if (type.u < 0)
 	// 	s = ft_itoa_negative(type.i, 10);
 	else
-		s = ft_itoa_base(type.u, 10);
+		s = ft_itoa_unsigned(type.u, 10);
 	i = ft_strlen(s);
 	if (i < f->precision)
 		return (ft_precision(s, f->precision - i));

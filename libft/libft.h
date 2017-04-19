@@ -97,6 +97,8 @@ char				*ft_itoa_double(double nbr, int k);
 long				ft_roundnbr(long n, int i);
 char				*ft_itoa_exp(double nbr, int k);
 char				*ft_itoa_double_g(double nbr, int k);
+char				*ft_itoa_signed(intmax_t num);
+char				*ft_itoa_unsigned(uintmax_t num, int base);
 
 
 #endif

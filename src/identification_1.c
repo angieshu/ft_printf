@@ -42,7 +42,7 @@ char	*ft_pd(va_list *ap, flags *f, length *l)
 		s[0] = '0';
 	}
 	else
-		s = ft_itoa_base(type.i, 10);
+		s = ft_itoa_signed(type.i);
 	i = ft_strlen(s);
 	if (i <= f->precision)
 	{
@@ -71,7 +71,7 @@ char	*ft_po(va_list *ap, flags *f, length *l)
 		s[0] = '0';
 		return (s);
 	}
-	s = ft_itoa_base(type.u, 8);
+	s = ft_itoa_unsigned(type.u, 8);
 	i = ft_strlen(s);
 	if (i < f->precision)
 		s = ft_precision(s, f->precision - i);
@@ -99,7 +99,7 @@ char	*ft_px(va_list *ap, flags *f, length *l)
 		s[0] = '0';
 		return (s);
 	}
-	s = ft_itoa_base(type.u, 16);
+	s = ft_itoa_unsigned(type.u, 16);
 	i = ft_strlen(s);
 	if (i < f->precision)
 		s = ft_precision(s, f->precision - i);

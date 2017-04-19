@@ -29,6 +29,8 @@ int		ft_printf(const char *restrict format, ...)
 	char *s;
 	int i;
 
+	if (!format || !*format)
+		return (0);
 	s = ft_strnew(1);
 	if (!format)
 		return (-1);
