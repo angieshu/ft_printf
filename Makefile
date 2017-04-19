@@ -39,8 +39,6 @@ PRINTF_COMPILED =	check_format.o ft_printf.o identification_1.o identification_2
  					count_position.o flags_hash.o flags_set.o flags_others.o ft_build.o length_precision.o \
  					read_wchar.o min_width.o
 
-COMPILED =			$(FT_COMPILED) $(PRINTF_COMPILED)
-
 all: $(NAME)
 
 $(FT_COMPILED): %.o: $(FT_SRC_DIR)/%.c
@@ -49,13 +47,13 @@ $(FT_COMPILED): %.o: $(FT_SRC_DIR)/%.c
 $(PRINTF_COMPILED): %.o: $(PRINTF_SRC_DIR)/%.c
 	@$(CC) -c $(FLAGS) -I $(FT_SRC_DIR) -I $(PRINTF_SRC_DIR) $< -o $@
 
-$(NAME): $(FT_COMPILED) $(PRINTF_COMPILED) $(COMPILED)
-	@ar rcs $(NAME) $(COMPILED)
+$(NAME): $(FT_COMPILED) $(PRINTF_COMPILED) 
+	@ar rcs $(NAME) $(FT_COMPILED) $(PRINTF_COMPILED)
 	@echo "made" $(NAME)
 
 
 clean:
-	@-/bin/rm -f $(COMPILED)
+	@-/bin/rm -f $(FT_COMPILED) $(PRINTF_COMPILED)
 	@echo "cleaned" $(NAME)
 
 fclean: clean
