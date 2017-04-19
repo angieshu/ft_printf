@@ -95,7 +95,7 @@ char		*ft_itoa_negative(intmax_t v, int b)
 	char *tmp;
 	char *s;
 
-	i = 32;
+	i = 64;
 	v = v * -1;
 	tmp = ft_itoa_base(v, 2);
 	len = ft_strlen(tmp);

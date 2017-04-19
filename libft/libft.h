@@ -16,6 +16,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include <limits.h>
 
 typedef struct		s_list
 {
@@ -87,7 +88,7 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 unsigned int		ft_hcf(unsigned int a, unsigned int b);
 unsigned int		ft_lcm(unsigned int a, unsigned int b);
 void				ft_toupper_s(char *s);
-int					ft_countnumber(long v, int b);
+long				ft_countnumber(intmax_t v, int b);
 char				*ft_strrev(char *str);
 long				ft_power(long n, long pow);
 char				*ft_itoa_negative(intmax_t v, int b);

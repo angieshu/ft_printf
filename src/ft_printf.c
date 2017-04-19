@@ -6,21 +6,20 @@ int		ft_readformat(char **format, char **s, va_list ap)
 	length l;
 	char *tmp;
 	char *tmp2;
-
 	f.s_size = 0;
 	while (ft_strlen(*format) > 0)
 	{
 		ft_reset(&f, &l);
 		if (**format == '%')
-			tmp = ft_check_format(format, ap, f, l);
+			tmp = ft_check_format(format, (va_list*)ap, &f, &l);
 		else
 			tmp = ft_strsub(*format, 0, 1);
-		tmp2 = ft_strdup(*s);
+		tmp2 = *s;
 		*s = ft_strjoin(tmp2, tmp);
-		free(tmp2);
 		*format += 1;
 	}
-	free(tmp);
+	if (f.precision != -5)
+		free(tmp);
 	return (f.s_size);
 }
 
@@ -40,6 +39,7 @@ int		ft_printf(const char *restrict format, ...)
 		return (-1);
 	ft_putstr(s);
 	i += ft_strlen(s);
-	free(s);
+	if (s)
+		free(s);
 	return (i);
 }

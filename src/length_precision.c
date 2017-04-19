@@ -1,37 +1,39 @@
 #include "libftprintf.h"
 
-intmax_t	ft_conv_len(va_list ap, length *l)
+intmax_t	ft_conv_len(va_list *ap, length *l)
 {
 	if (l->l == 1)
-		return ((long)va_arg(ap, intmax_t));
-	if (l->hh == 1)
-		return ((signed char)va_arg(ap, intmax_t));
-	if (l->h == 1)
-		return ((short)va_arg(ap, intmax_t));
-	if (l->ll == 1)
-		return ((long long)va_arg(ap, intmax_t));
-	if (l->j == 1)
-		return (va_arg(ap, intmax_t));
-	if (l->z == 1)
-		return ((size_t)va_arg(ap, intmax_t));
-	return ((int)va_arg(ap, intmax_t));
+		return ((long)va_arg(*ap, intmax_t));
+	else if (l->hh == 1)
+		return ((signed char)va_arg(*ap, intmax_t));
+	else if (l->h == 1)
+		return ((short)va_arg(*ap, intmax_t));
+	else if (l->ll == 1)
+		return ((long long)va_arg(*ap, intmax_t));
+	else if (l->j == 1)
+		return (va_arg(*ap, intmax_t));
+	else if (l->z == 1)
+		return ((size_t)va_arg(*ap, intmax_t));
+	else
+		return ((int)va_arg(*ap, intmax_t));
 }
 
-uintmax_t	ft_conv_unsigned(va_list ap, length *l)
+uintmax_t	ft_conv_unsigned(va_list *ap, length *l)
 {
 	if (l->l == 1)
-		return ((unsigned long)va_arg(ap, uintmax_t));
-	if (l->hh == 1)
-		return ((unsigned char)va_arg(ap, uintmax_t));
-	if (l->h == 1)
-		return ((unsigned short)va_arg(ap, uintmax_t));
-	if (l->ll == 1)
-		return ((unsigned long long)va_arg(ap, uintmax_t));
-	if (l->j == 1)
-		return (va_arg(ap, uintmax_t));
-	if (l->z == 1)
-		return ((size_t)va_arg(ap, uintmax_t));
-	return ((unsigned int)va_arg(ap, uintmax_t));
+		return ((unsigned long)va_arg(*ap, uintmax_t));
+	else if (l->hh == 1)
+		return ((unsigned char)va_arg(*ap, uintmax_t));
+	else if (l->h == 1)
+		return ((unsigned short)va_arg(*ap, uintmax_t));
+	else if (l->ll == 1)
+		return ((unsigned long long)va_arg(*ap, uintmax_t));
+	else if (l->j == 1)
+		return (va_arg(*ap, uintmax_t));
+	else if (l->z == 1)
+		return ((size_t)va_arg(*ap, uintmax_t));
+	else
+		return ((unsigned int)va_arg(*ap, uintmax_t));
 }
 
 char		*ft_precision(char *tmp, int n)

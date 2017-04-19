@@ -1,8 +1,8 @@
 #include "libft.h"
 
-int	ft_countnumber(long v, int b)
+long	ft_countnumber(intmax_t v, int b)
 {
-	int		i;
+	long	i;
 
 	i = 0;
 	if (v < 0)

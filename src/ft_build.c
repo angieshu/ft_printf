@@ -1,19 +1,6 @@
 #include "libftprintf.h"
 
-// char	*ft_pd(va_list ap, flags *f, length *l);
-// char	*ft_ps(va_list ap, flags *f, length *l);
-// char	*ft_pc(va_list ap, flags *f, length *l);
-// char	*ft_po(va_list ap, flags *f, length *l);
-// char	*ft_px(va_list ap, flags *f, length *l);
-// char	*ft_pu(va_list ap, flags *f, length *l);
-// char	*ft_ps(va_list ap, flags *f, length *l);
-// char	*ft_pws(va_list ap, flags *f);
-// char	*ft_pe(va_list ap, flags *f);
-// char	*ft_pf(va_list ap, flags *f);
-// char	*ft_pg(va_list ap, flags *f);
-// char	*ft_pper(void);
-
-char	*ft_build(va_list ap, flags *f, length *l)
+char	*ft_build(va_list *ap, flags *f, length *l)
 {
 	char *s;
 	if (f->conv == 's' || f->conv == 'S')

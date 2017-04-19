@@ -23,8 +23,8 @@ int		ft_check_flag(char **format, flags *f)
 		// 	f->dollar = 1;
 		// else if (**(format + i) == '\'')
 		// 	f->apostrophe = 1;
-		// else
-		// 	return (0);
+		else
+			return (0);
 		*format += 1;
 	}
 	return (1);

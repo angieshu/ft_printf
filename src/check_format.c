@@ -45,57 +45,51 @@ int		ft_check_precision(char **format, flags *f)
 
 void	ft_check_length(char **f, length *l)
 {
-	if (**f == 'h' || **f == 'l' || **f == 'j' || **f == 'z')
+	if (**f == 'h')
 	{
-		if (**f == 'h' && **(f + 1) == 'h')
-		{
+		(*f)++;
+		if (**f == 'h')
 			l->hh = 1;
-			*f += 1;
-		}
-		else if (**f == 'h')
+		else
 			l->h = 1;
-		else if (**f == 'l' && **(f + 1) == 'l')
-		{
+	}
+	else if (**f == 'l')
+	{
+		(*f)++;
+		if (**f == 'l')
 			l->ll = 1;
-			*f += 1;
-		}
-		else if (**f == 'l')
+		else
 			l->l = 1;
-		else if (**f == 'j')
+	}
+	else if (**f == 'j' || **f == 'z')
+	{
+		if (**f == 'j')
 			l->j = 1;
 		else if (**f == 'z')
 			l->z = 1;
-		*f += 1;
+		(*f)++;
 	}
-	else 
-		l->none = 1;
+	l->none = 1;
 }
 
-char	*ft_check_format(char **format, va_list ap, flags f, length l)
+char	*ft_check_format(char **format, va_list *ap, flags *f, length *l)
 {
 	*format += 1;
-	while (!ft_check_conv_type(format, &f))
+	while (!ft_check_conv_type(format, f))
 	{
-		ft_check_length(format, &l);
-		if (ft_check_flag(format, &f))
+		ft_check_length(format, l);
+		if (ft_check_flag(format, f))
 			continue ;
-		else if (ft_check_precision(format, &f))
+		else if (ft_check_precision(format, f))
 			continue ;
-		else if (ft_check_minwith(format, &f))
+		else if (ft_check_minwith(format, f))
 			continue ;
 		else
 			break ;
 	}
-	ft_check_length(format, &l);
-	if (!ft_check_conv_type(format, &f))
+	ft_check_length(format, l);
+	if (!ft_check_conv_type(format, f))
 		return (NULL);
-	return (ft_build(ap, &f, &l));
-	// if (!ft_check_flag(format, &f))
-	// 	return (error());
-	// f->min_width = ft_check_minwith(format);
-	// if (!ft_check_precision(format, &f))
-	// 	return (error());
-	// ft_check_length(format, &l)
-	// if (!ft_check_conv_type(format, &f))
-	// 	return (error());
+	return (ft_build(ap, f, l));
+
 }

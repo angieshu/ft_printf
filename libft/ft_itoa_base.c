@@ -4,7 +4,7 @@ char	*ft_itoa_base(intmax_t value, int base)
 {
 	char	s[17];
 	char	*result;
-	int		i;
+	long	i;
 
 	if (value == 0)
 		return ("0");

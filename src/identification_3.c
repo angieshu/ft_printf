@@ -1,6 +1,6 @@
 #include "libftprintf.h"
 
-char	*ft_pws(va_list ap, flags *f)
+char	*ft_pws(va_list *ap, flags *f)
 {
 	union data	type;
 	intmax_t	len;
@@ -10,7 +10,7 @@ char	*ft_pws(va_list ap, flags *f)
 
 	len = 0;
 	s = ft_strnew(1);
-	type.ws = va_arg(ap, wchar_t*);
+	type.ws = va_arg(*ap, wchar_t*);
 	if (!type.ws)
 		return (NULL);
 	while (type.ws)
@@ -29,27 +29,20 @@ char	*ft_pws(va_list ap, flags *f)
 	return (s);
 }
 
-char	*ft_ps(va_list ap, flags *f, length *l)
+char	*ft_ps(va_list *ap, flags *f, length *l)
 {
 	union data	type;
 	intmax_t	i;
 
 	if ((l->l == 1 && f->conv == 's') || f->conv == 'S')
 		return (ft_pws(ap, f));
-	// {
-	// 	type.ws = va_arg(ap, wchar_t*);
-	// 	while (ws)
-	// 	{
-	// 		if (!type.ws)
-	// 			return (NULL);
-	// 		else
-	// 		{
 
-	// 		}
-	// 	}
-		
-	// }
-	type.s = va_arg(ap, char*);
+	type.s = va_arg(*ap, char*);
+	if (!type.s)
+	{
+		f->precision = -5;
+		return ("(null)");
+	}
 	i = ft_strlen(type.s);
 	if (f->precision == -1)
 		f->precision = i;

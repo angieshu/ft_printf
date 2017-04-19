@@ -27,10 +27,10 @@ char	*ft_min_width(char *s, flags *f)
 	char *tmp;
 
 	i = ft_strlen(s);
-	if (i > 0 && s[0] != '-' && f->plus == 1 &&
-		(f->conv == 'd' || f->conv == 'i' || f->conv == 'e' ||
-		f->conv == 'E' || f->conv == 'f' || f->conv != 'F' ||
-		f->conv == 'g' || f->conv == 'G'))
+	if ((f->conv == 'd' || f->conv == 'i' || f->conv == 'e' ||
+		f->conv == 'E' || f->conv == 'f' || f->conv == 'F' ||
+		f->conv == 'g' || f->conv == 'G') &&
+		i > 0 && s[0] != '-' && f->plus == 1)
 	{
 		tmp = s;
 		s = ft_strjoin("+", tmp);
