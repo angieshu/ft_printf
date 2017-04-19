@@ -22,10 +22,10 @@ PFFL =		check_format.c ft_printf.c identification_1.c identification_2.c identif
  			count_position.c flags_set.c flags_others.c ft_build.c length_precision.c \
  			read_wchar.c min_width.c
 
-FTFL =		ft_atoi.c ft_itoa.c ft_isalnum.c ft_isdigit.c ft_isprint.c ft_itoa_double.c ft_itoa_double_g.c \
+FTFL =		ft_atoi.c ft_isalnum.c ft_isdigit.c ft_isprint.c ft_itoa_double.c ft_itoa_double_g.c \
 			ft_itoa_exp.c ft_itoa_negative.c ft_power.c ft_putchar.c ft_putstr.c ft_strdup.c \
 			ft_strjoin.c ft_strlen.c ft_strnew.c ft_strsub.c ft_toupper_s.c ft_itoa_signed.c \
-			ft_itoa_unsigned.c
+			ft_itoa_unsigned.c ft_itoa.c ft_memset.c  ft_memalloc.c ft_countnumber.c
 
 PFSR =		$(addprefix src/, $(PFFL))
 
