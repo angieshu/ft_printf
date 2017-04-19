@@ -43,16 +43,16 @@ COMPILED =			$(FT_COMPILED) $(PRINTF_COMPILED)
 
 all: $(NAME)
 
-$(NAME): $(COMPILED)
-	@ar rc $(NAME) $(COMPILED)
-	@ranlib $(NAME)
-	@echo "made" $(NAME)
-
 $(FT_COMPILED): %.o: $(FT_SRC_DIR)/%.c
 	@$(CC) -c $(FLAGS) -I $(FT_SRC_DIR) $< -o $@
 
 $(PRINTF_COMPILED): %.o: $(PRINTF_SRC_DIR)/%.c
 	@$(CC) -c $(FLAGS) -I $(FT_SRC_DIR) -I $(PRINTF_SRC_DIR) $< -o $@
+
+$(NAME): $(FT_COMPILED) $(PRINTF_COMPILED) $(COMPILED)
+	@ar rcs $(NAME) $(COMPILED)
+	@echo "made" $(NAME)
+
 
 clean:
 	@-/bin/rm -f $(COMPILED)
