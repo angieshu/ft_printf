@@ -62,12 +62,15 @@ char	*ft_pc(va_list *ap, flags *f, length *l)
 	if ((l->l == 1 && f->conv == 'c') || f->conv == 'C')
 	{
 		type.wi = va_arg(*ap, wint_t);
+		if (!type.wi)
+			return (ft_strnew(1));
 		s = ft_wprint(type.wi);
 		return (s);
 	}
 	type.i = va_arg(*ap, intmax_t);
 	if (!type.i)
 	{
+		f->s_size++;
 		f->min_width -= 1;
 		s = ft_strnew(1);
 		return (s);

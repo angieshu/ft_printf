@@ -19,17 +19,18 @@ char	*ft_pws(va_list *ap, flags *f)
 		f->precision = -5;
 			return ("(null)");
 	}
-	while (type.ws)
+	while ((len = ft_count_wsize(*type.ws)) > 0)
 	{
-		len = ft_count_wsize(*type.ws);
+		// printf("na");
+		// len = ft_count_wsize(*type.ws);
 		if ((len + ft_strlen(s)) > f->precision
 			&& f->precision > 0)
 			break ;
 		tmp = ft_wprint(*type.ws);
 		tmp2 = s;
 		s = ft_strjoin(tmp2, tmp);
+		++type.ws;
 	}
-	f->s_size += ft_strlen(s) - 1;
 	free(tmp);
 	return (s);
 }
