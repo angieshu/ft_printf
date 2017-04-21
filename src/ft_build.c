@@ -3,6 +3,9 @@
 char	*ft_build(va_list *ap, flags *f, length *l)
 {
 	char *s;
+
+	if (f->star == 1)
+		ft_star(ap, f);
 	if (f->conv == 's' || f->conv == 'S')
 		s = ft_ps(ap, f, l);
 	else if (f->conv == 'c' || f->conv == 'C')
@@ -21,9 +24,15 @@ char	*ft_build(va_list *ap, flags *f, length *l)
 		s = ft_pe(ap, f);
 	else if (f->conv == 'f' || f->conv == 'F')
 		s = ft_pf(ap, f);
+	else if (f->conv == 'p')
+		s = ft_pp(ap, f);
 	else
 		s = ft_pg(ap, f);
 	s = ft_min_width(s, f);
 	s = ft_flags(s, f);
+	if (s && s[0] != 0)
+		f->s_size += ft_strlen(s) - 1;
+	if (s[0] == 0 && f->conv == 's')
+		f->s_size--;
 	return (s);
 }

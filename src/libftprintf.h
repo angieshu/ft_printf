@@ -25,6 +25,7 @@ typedef	struct
 	int hash;
 	int space;
 	int zero;
+	int star;
 	int apostrophe;
 	int dollar;
 	int precision;
@@ -56,6 +57,7 @@ char	*ft_px(va_list *ap, flags *f, length *l);
 char	*ft_pu(va_list *ap, flags *f, length *l);
 char	*ft_ps(va_list *ap, flags *f, length *l);
 char	*ft_pws(va_list *ap, flags *f);
+char	*ft_pp(va_list *ap, flags *f);
 char	*ft_pe(va_list *ap, flags *f);
 char	*ft_pf(va_list *ap, flags *f);
 char	*ft_pg(va_list *ap, flags *f);
@@ -74,23 +76,26 @@ int		ft_check_flag(char **format, flags *f);
 char	*ft_flags(char *s, flags *f);
 void	ft_reset(flags *f, length *l);
 
-char	*ft_wprint(unsigned warg);
-char	*ft_wprint_1(unsigned warg);
+int		ft_count_wsize(unsigned warg);
+char	*ft_wprint(wint_t warg);
+char	*ft_wprint_1(wint_t warg);
 
 int		ft_check_conv_type(char **format, flags *f);
-int		ft_check_minwith(char **format, flags *f);
-int		ft_check_precision(char **format, flags *f);
+int		ft_check_minwith(char **format, va_list *ap, flags *f);
+int		ft_check_precision(va_list *ap, char **format, flags *f);
 void	ft_check_length(char **f, length *l);
 char	*ft_check_format(char **format, va_list *ap, flags *f, length *l);
 
 void	ft_zero_fl(char *s, char c, flags *f);
 char	*ft_space(char *s, flags *f);
+void	ft_star(va_list *ap, flags *f);
 
 char	*ft_build(va_list *ap, flags *f, length *l);
 char	*ft_min_width(char *s, flags *f);
 char	*ft_extend_s(char *s, int k, char left);
 
 int		add_len(flags *f);
+char	*ft_invalid(char **format, flags *f);
 
 
 #endif

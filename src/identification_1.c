@@ -1,5 +1,58 @@
 #include "libftprintf.h"
 
+// char	*null_s(flags *f)
+// {
+// 	char *s;
+// 	int len;
+
+// 	len = 2;
+// 	s = (char*)malloc(2);
+// 	while (len-- >= 0)
+// 		s[len] = '\0';
+// 	return (s);
+// }
+
+// char	*ft_pc(va_list *ap, flags *f, length *l)
+// {
+
+// 	union data type;
+// 	char *s;
+
+// 	if ((l->l == 1 && f->conv == 'c') || f->conv == 'C')
+// 	{
+// 		type.wi = va_arg(*ap, wint_t);
+// 				// return(ft_wprint(type.wi));
+// 		if (!type.wi)
+// 		{
+// 			f->precision = -5;
+// 			s = "";
+// 		}
+// 		else
+// 			s = ft_wprint(type.wi);
+// 		// printf("%s\n", s);
+// 		f->min_width -= 1;
+// 		// return (s);
+// 	}
+// 	else
+// 	{
+// 		type.i = va_arg(*ap, intmax_t);
+// 		// if (!type.i)
+// 		// {
+// 		// 	f->s_size++;
+// 		// 	f->min_width -= 1;
+// 		// 	s = ft_strnew(0);
+// 		// 	// return (ft_strnew(0));
+// 		// }
+// 		// else
+// 		// {
+// 			s = ft_strnew(1);
+// 			s[0] = type.i;
+// 		// }
+// 		s = ft_precision(s, f->precision - ft_strlen(s));
+// 	}
+// 	return (s);
+// }
+
 char	*ft_pc(va_list *ap, flags *f, length *l)
 {
 
@@ -15,9 +68,8 @@ char	*ft_pc(va_list *ap, flags *f, length *l)
 	type.i = va_arg(*ap, intmax_t);
 	if (!type.i)
 	{
-		f->s_size++;
 		f->min_width -= 1;
-		s = ft_strnew(0);
+		s = ft_strnew(1);
 		return (s);
 	}
 	s = ft_strnew(1);
@@ -95,7 +147,7 @@ char	*ft_px(va_list *ap, flags *f, length *l)
 		return (ft_strnew(0));
 	else if (type.u == 0)
 	{
-		s = ft_strnew(2);
+		s = ft_strnew(1);
 		s[0] = '0';
 		return (s);
 	}

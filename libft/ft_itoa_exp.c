@@ -1,6 +1,6 @@
 #include "libft.h"
-#include <stdio.h>
-static char *ft_zero(double nbr, int k)
+
+static char *ft_zero(long double nbr, int k)
 {
 	char *s;
 	char *tmp;
@@ -11,7 +11,7 @@ static char *ft_zero(double nbr, int k)
 	return (s);
 }
 
-static int	ft_round(double nbr, int k)
+static int	ft_round(long double nbr, int k)
 {
 	double check;
 
@@ -23,7 +23,7 @@ static int	ft_round(double nbr, int k)
 	return (1);
 }
 
-static char	*ft_count_power(double nbr, int k, int sign)
+static char	*ft_count_power(long double nbr, int k, int sign)
 {
 	int i;
 	char *s;
@@ -54,7 +54,7 @@ static char	*ft_count_power(double nbr, int k, int sign)
 	return (s);
 } 
 
-static char	*ft_count_power_neg(double nbr, int k, int sign)
+static char	*ft_count_power_neg(long double nbr, int k, int sign)
 {
 	int i;
 	char *s;
@@ -81,7 +81,7 @@ static char	*ft_count_power_neg(double nbr, int k, int sign)
 	return (s);
 }
 
-char		*ft_itoa_exp(double nbr, int k)
+char		*ft_itoa_exp(long double nbr, int k)
 {
 	int sign;
 

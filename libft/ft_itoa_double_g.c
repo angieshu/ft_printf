@@ -1,20 +1,20 @@
 #include "libft.h"
 
-static char *pure_s(double nbr, int k)
+static char *pure_s(long double nbr, int k)
 {
 	int count;
-	long n;
-	double nbrcpy;
+	uintmax_t n;
+	long double nbrcpy;
 
 	nbrcpy = nbr;
 	if (nbr == 0.0)
 		return ("0");
 	if (nbr < 0)
-		nbrcpy *= -1;
-	n = (long)nbr;
+		nbr *= -1;
+	n = (uintmax_t)nbr;
 	if (n == 0)
 	{
-		n = (long)nbr * ft_power(10, k - 1);
+		n = (uintmax_t)nbr * ft_power(10, k - 1);
 		count = ft_countnumber(n, 10);
 		if (count <= k)
 			return (ft_itoa_double(nbr, k));
@@ -26,7 +26,7 @@ static char *pure_s(double nbr, int k)
 	return (ft_itoa_exp(nbr, k - 1));
 }
 
-char	*ft_itoa_double_g(double nbr, int k)
+char	*ft_itoa_double_g(long double nbr, int k)
 {
 	char *tmp;
 	char *s;

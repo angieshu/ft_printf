@@ -18,7 +18,7 @@ static char *zero(int k, int sign)
 	return (s);
 }
 
-static char	*build(intmax_t n, int k, int i, int sign)
+static char	*build(uintmax_t n, int k, int i, int sign)
 {
 	char *n_nbr;
 
@@ -42,15 +42,15 @@ static char	*build(intmax_t n, int k, int i, int sign)
 	return (n_nbr);
 }
 
-static char *counting(double nbr, int k, int sign, long i)
+static char *counting(long double nbr, int k, int sign, long i)
 {
-	long n;
-	long nbrcpy;
-	double nbr_d;
+	uintmax_t n;
+	uintmax_t nbrcpy;
+	long double nbr_d;
 
 	nbr_d = nbr; 
 	nbr_d *= ft_power(10, k + 1);
-	n = (long)nbr_d;
+	n = (uintmax_t)nbr_d;
 	if (((((n / 10) + 1) * 10) - n) < 6)
 		n = n + 10;
 	if (nbr < 1)
@@ -70,7 +70,7 @@ static char *counting(double nbr, int k, int sign, long i)
 	return (build(n / 10, k, i + sign, sign));
 }
 
-char	*ft_itoa_double(double nbr, int k)
+char	*ft_itoa_double(long double nbr, int k)
 {
 	int sign;
 	long i;

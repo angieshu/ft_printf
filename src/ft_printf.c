@@ -6,19 +6,31 @@ int		ft_readformat(char **format, char **s, va_list ap)
 	length l;
 	char *tmp;
 	char *tmp2;
+
 	f.s_size = 0;
-	while (ft_strlen(*format) > 0)
+	while (ft_strlen(*format) > 0 || **format)
 	{
 		ft_reset(&f, &l);
 		if (**format == '%')
 			tmp = ft_check_format(format, (va_list*)ap, &f, &l);
 		else
 			tmp = ft_strsub(*format, 0, 1);
-		tmp2 = *s;
-		*s = ft_strjoin(tmp2, tmp);
-		*format += 1;
+		// if (tmp)
+		// {
+			tmp2 = *s;
+			*s = ft_strjoin(tmp2, tmp);
+		// }
+		// if (*s[0] == 0 && !*format)
+		// {
+		// 	printf("lala\n");
+		// 	return (-1);
+		// }
+		if (*format)
+			*format += 1;
+		f.s_size++;
+		// printf("s = %s", tmp);
 	}
-	if (f.precision != -5)
+	if (tmp && f.precision != -5)
 		free(tmp);
 	return (f.s_size);
 }
@@ -31,16 +43,14 @@ int		ft_printf(const char *restrict format, ...)
 
 	if (!format || !*format)
 		return (0);
-	s = ft_strnew(1);
-	if (!format)
-		return (-1);
+	s = ft_strnew(0);
 	va_start(ap, format);
 	i = ft_readformat((char**)&format, &s, ap);
 	va_end(ap);
-	if (s == NULL)
-		return (-1);
-	ft_putstr(s);
-	i += ft_strlen(s);
+	if (!s)
+		return (0);
+	write(1, s, i);
+	// i += ft_strlen(s);
 	if (s)
 		free(s);
 	return (i);

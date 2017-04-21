@@ -19,6 +19,8 @@ int		ft_check_flag(char **format, flags *f)
 			f->hash = 1;
 		else if (**format == ' ')
 			f->space = 1;
+		else if (**format == '*')
+			f->star = 1;
 		// else if (**(format + i) == '$')
 		// 	f->dollar = 1;
 		// else if (**(format + i) == '\'')
@@ -42,8 +44,6 @@ char	*ft_flags(char *s, flags *f)
 		s = ft_space(s, f);
 	if (f->zero == 1)
 		ft_zero_fl(s, '0', f);
-	if (f->dollar == 1)
-		ft_zero_fl(s, '$', f);
 	if (!s)
 		return (NULL);
 	return (s);
@@ -56,10 +56,11 @@ void	ft_reset(flags *f, length *l)
 	f->hash = 0;
 	f->space = 0;
 	f->zero = 0;
+	f->star = 0;
 	f->apostrophe = 0;
 	f->dollar = 0;
 	f->precision = -1;
-	f->min_width = 0;
+	f->min_width = -1;
 	f->conv = 0; 
 	l->none = 0;
 	l->hh = 0;
