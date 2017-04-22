@@ -3,7 +3,6 @@
 char	*ft_invalid(char **format, flags *f)
 {
 	char *s;
-
 	s = ft_strnew(1);
 	s[0] = **format;
 	return (ft_min_width(s, f));
@@ -28,26 +27,29 @@ void	ft_zero_fl(char *s, char c, flags *f)
 	int i;
 
 	i = 0;
-	if ((f->precision >= f->min_width) || f->precision == -1 || f->conv == 'C')
+	if (f->precision >= 0 && (f->conv == 'd' || f->conv == 'D' || f->conv == 'i' ||
+		f->conv == 'o' || f->conv == 'O' || f->conv == 'u' || f->conv == 'U' ||
+		f->conv == 'x' || f->conv == 'X'))
+		return ;
+	while (!ft_isalnum(s[i]) && s[i])
 	{
-		while (!ft_isalnum(s[i]) && s[i])
-		{
-			if (s[i] == '-' || s[i] == '+')
-			{
-			 	s[0] = s[i];
-				if (i > 0)
-					s[i] = c;
-			}
-			else
-				s[i] = c;
+		if (f->space == 1 && s[0] == ' ')
 			i++;
-		}
-		if ((s[i + 1] == 'x' || s[i + 1] == 'X') && f->hash == 1)
+		if (s[i] == '-' || s[i] == '+')
 		{
-			s[1] = s[i + 1];
-			if ((i + 1) != 1)
-				s[i + 1] = c;
+		 	s[0] = s[i];
+			if (i > 0)
+				s[i] = c;
 		}
+		else
+			s[i] = c;
+		i++;
+	}
+	if ((s[i + 1] == 'x' || s[i + 1] == 'X') && f->hash == 1)
+	{
+		s[1] = s[i + 1];
+		if ((i + 1) != 1)
+			s[i + 1] = c;
 	}
 }
 

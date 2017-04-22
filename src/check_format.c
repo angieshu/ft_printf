@@ -21,19 +21,16 @@ int		ft_check_minwith(char **format, va_list *ap, flags *f)
 
 	if (f->star == 1)
 	{
-		f->star++;
+		f->star--;
 		ft_star(ap, f);
 		return (1);
 	}
-	else if (f->star == 0)
+	i = ft_atoi(*format);
+	*format += ft_count_num(*format);
+	if (i > 0)
 	{
-		i = ft_atoi(*format);
-		*format += ft_count_num(*format);
-		if (i > 0)
-		{
-			f->min_width = i;
-			return (1);
-		}
+		f->min_width = i;
+		return (1);
 	}
 	return (0);
 }
@@ -95,8 +92,6 @@ void	ft_check_length(char **f, length *l)
 
 char	*ft_check_format(char **format, va_list *ap, flags *f, length *l)
 {
-	char *s;
-
 	*format += 1;
 	if (!**format)
 	{
@@ -117,12 +112,7 @@ char	*ft_check_format(char **format, va_list *ap, flags *f, length *l)
 	}
 	ft_check_length(format, l);
 	if (!ft_check_conv_type(format, f))
-	{
-		s = ft_invalid(format, f);
-		if (s && s[0] != 0)
-			f->s_size += ft_strlen(s) - 1;
-		return (s);
-	}
+		return(ft_invalid(format, f));
 	return (ft_build(ap, f, l));
 
 }
