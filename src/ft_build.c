@@ -31,7 +31,6 @@ char	*ft_build(va_list *ap, flags *f, length *l)
 	s = ft_min_width(s, f);
 	s = ft_flags(s, f);
 	f->s_size += ft_strlen(s);
-	printf("%d\n", f->s_size);
 	write (1, s, f->s_size);
 	f->total_size += f->s_size;
 	// if (s && s[0] != 0)
