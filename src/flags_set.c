@@ -57,8 +57,8 @@ void	ft_reset(flags *f, length *l)
 	f->space = 0;
 	f->zero = 0;
 	f->star = 0;
-	f->apostrophe = 0;
-	f->dollar = 0;
+	f->s_size = 0;
+	f->error = 0;
 	f->precision = -1;
 	f->min_width = -1;
 	f->conv = 0; 

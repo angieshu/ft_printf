@@ -30,9 +30,13 @@ char	*ft_build(va_list *ap, flags *f, length *l)
 		s = ft_pg(ap, f);
 	s = ft_min_width(s, f);
 	s = ft_flags(s, f);
-	if (s && s[0] != 0)
-		f->s_size += ft_strlen(s) - 1;
-	if (s[0] == 0 && f->conv == 's')
-		f->s_size--;
+	f->s_size += ft_strlen(s);
+	printf("%d\n", f->s_size);
+	write (1, s, f->s_size);
+	f->total_size += f->s_size;
+	// if (s && s[0] != 0)
+	// 	f->s_size += ft_strlen(s) - 1;
+	// if (s[0] == 0 && (f->conv == 's' || f->precision == 0))
+	// 	f->s_size--;
 	return (s);
 }

@@ -63,7 +63,10 @@ char	*ft_pc(va_list *ap, flags *f, length *l)
 	{
 		type.wi = va_arg(*ap, wint_t);
 		if (!type.wi)
+		{
+			f->s_size++;
 			return (ft_strnew(1));
+		}
 		s = ft_wprint(type.wi);
 		return (s);
 	}
@@ -72,8 +75,7 @@ char	*ft_pc(va_list *ap, flags *f, length *l)
 	{
 		f->s_size++;
 		f->min_width -= 1;
-		s = ft_strnew(1);
-		return (s);
+		return (ft_strnew(1));
 	}
 	s = ft_strnew(1);
 	s[0] = type.i;

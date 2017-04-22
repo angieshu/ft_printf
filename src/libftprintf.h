@@ -26,12 +26,12 @@ typedef	struct
 	int space;
 	int zero;
 	int star;
-	int apostrophe;
-	int dollar;
 	int precision;
 	int min_width;
+	int error;
 	char conv;
-	uintmax_t s_size; 
+	uintmax_t s_size;
+	uintmax_t total_size; 
 } flags;
 
 typedef struct
