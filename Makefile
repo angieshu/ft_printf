@@ -27,9 +27,9 @@ FTFL =		ft_atoi.c ft_isalnum.c ft_isdigit.c ft_isprint.c ft_itoa_double.c ft_ito
 			ft_strjoin.c ft_strlen.c ft_strnew.c ft_strsub.c ft_toupper_s.c ft_itoa_signed.c \
 			ft_itoa_unsigned.c ft_itoa.c ft_memset.c  ft_memalloc.c ft_countnumber.c ft_bzero.c
 
-PFSR =		$(addprefix src/, $(PFFL))
+PFSR =		$(addprefix $(PFDR), $(PFFL))
 
-FTSR =		$(addprefix libft/, $(FTFL))
+FTSR =		$(addprefix $(FTDR), $(FTFL))
 
 POBJ =		$(PFSR:.c=.o)
 LOBJ =		$(FTSR:.c=.o)
@@ -42,7 +42,7 @@ $(POBJ): %.o: %.c
 $(LOBJ): %.o: %.c
 	@gcc -c $(FLAG) libft/ $< -o $@
 
-$(NAME): $(POBJ) $(LOBJ)
+$(NAME): $(LOBJ) $(POBJ)
 	@ar rcs $(NAME) $(POBJ) $(LOBJ)
 
 clean:

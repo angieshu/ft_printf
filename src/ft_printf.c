@@ -18,6 +18,7 @@ s = NULL;
 			f.s_size += ft_strlen(tmp);
 			write (1, tmp, f.s_size);
 			f.total_size += f.s_size;
+			//free(tmp);
 			// printf("%jd\n", f.total_size);
 		}
 		else
@@ -25,7 +26,10 @@ s = NULL;
 			tmp = ft_strsub(*format, 0, 1);
 			f.total_size++;
 			write(1, tmp, 1);
+		//	free(tmp);
 		}
+		if (tmp && f.precision != -5)
+			free(tmp);
 		// if (tmp)
 		// // {
 		// 	tmp2 = *s;
@@ -41,8 +45,6 @@ s = NULL;
 		// f.s_size++;
 		// printf("s = %s", tmp);
 	}
-	if (tmp && f.precision != -5)
-		free(tmp);
 	return (f.total_size);
 }
 
