@@ -20,10 +20,10 @@ char	*ft_wprint(wint_t warg)
 {
 	char *s;
 
-	if (chr < (MB_CUR_MAX == 1 ? 0xFF : 0x7F))
+	if (warg < (MB_CUR_MAX == 1 ? 0xFF : 0x7F))
 	{
 		s = ft_strnew(1);
-		s[0] = (unsigned char)chr;
+		s[0] = (unsigned char)warg;
 	}
 	else if (warg <= 0x7FF)
 	{
