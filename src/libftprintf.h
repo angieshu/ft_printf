@@ -92,7 +92,7 @@ void	ft_star(va_list *ap, flags *f);
 
 char	*ft_build(va_list *ap, flags *f, length *l);
 char	*ft_min_width(char *s, flags *f);
-char	*ft_extend_s(char *s, int k, char left);
+char	*ft_extend_s(flags *f, char *s, int k, char left);
 
 int		add_len(flags *f);
 char	*ft_invalid(char **format, flags *f);
