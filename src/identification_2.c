@@ -1,11 +1,14 @@
 #include "libftprintf.h"
 
-char	*ft_pe(va_list *ap, flags *f)
+char	*ft_pe(va_list *ap, flags *f, length *l)
 {
 	union data	type;
 	char		*s;
 
-	type.d = va_arg(*ap, double);
+	// if (l->L == 1)
+	// 	type.d = 
+	// type.d = va_arg(*ap, double);
+	type.ld = (l->L = 1) ? (long double)va_arg(*ap, double) : va_arg(*ap, double);
 	if (type.d == 0.0 && f->precision == 0)
 		return (ft_strnew(0));
 	if (f->precision == -1)
@@ -27,15 +30,11 @@ char	*ft_pu(va_list *ap, flags *f, length *l)
 	type.u = ft_conv_unsigned(ap, l);
 	if (type.u == 0 && f->precision == 0)
 		return (ft_strnew(0));
-	// if (f->precision == 0 && type.i == 0)
-	// 	return (ft_strnew(0));
 	if (type.u == 0)
 	{
 		s = ft_strnew(1);
 		s[0] = '0';
 	}
-	// else if (type.u < 0)
-	// 	s = ft_itoa_negative(type.i, 10);
 	else
 		s = ft_itoa_unsigned(type.u, 10);
 	i = ft_strlen(s);
@@ -53,12 +52,12 @@ char	*ft_pper(void)
 	return (s);
 }
 
-char	*ft_pf(va_list *ap, flags *f)
+char	*ft_pf(va_list *ap, flags *f, length *l)
 {
 	union data	type;
 	char		*s;
 
-	type.d = va_arg(*ap, double);
+	type.d = (l->L = 1) ? (long double)va_arg(*ap, double) : va_arg(*ap, double);
 	if (type.d == 0.0 && f->precision == 0)
 		return (ft_strnew(0));
 	if (f->precision == -1)
@@ -67,12 +66,12 @@ char	*ft_pf(va_list *ap, flags *f)
 	return (s);
 }
 
-char	*ft_pg(va_list *ap, flags *f)
+char	*ft_pg(va_list *ap, flags *f, length *l)
 {
 	union data	type;
 	char		*s;
 
-	type.d = va_arg(*ap, double);
+	type.d = (l->L = 1) ? (long double)va_arg(*ap, double) : va_arg(*ap, double);
 	if (type.d == 0.0 && f->precision == 0)
 		return (ft_strnew(0));
 	if (f->precision == -1)

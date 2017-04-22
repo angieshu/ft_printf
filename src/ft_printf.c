@@ -14,7 +14,8 @@ s = NULL;
 		ft_reset(&f, &l);
 		if (**format == '%')
 		{
-			tmp = ft_check_format(format, (va_list*)ap, &f, &l);
+			if (!(tmp = ft_check_format(format, (va_list*)ap, &f, &l)) && !**format)
+				return (f.total_size);
 			f.s_size += ft_strlen(tmp);
 			write (1, tmp, f.s_size);
 			f.total_size += f.s_size;

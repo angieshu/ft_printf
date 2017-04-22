@@ -1,7 +1,12 @@
 #include "libftprintf.h"
 
-int		ft_check_conv_type(char **format, flags *f)
+int		ft_check_conv_type(char **format, flags *f, length *l)
 {
+	if (**format == 'L')
+	{
+		l->L = 1;
+		(*format)++;
+	}
 	if (**format != 's' && **format != 'd' && **format != 'i' &&
 		**format != 'o' && **format != 'S' && **format != 'p' &&
 		**format != 'D' && **format != 'O' && **format != 'u' &&
@@ -9,8 +14,8 @@ int		ft_check_conv_type(char **format, flags *f)
 		**format != 'c' && **format != 'C' && **format != 'g' &&
 		**format != 'G' && **format != 'f' && **format != 'F' &&
 		**format != 'e' && **format != 'E' && **format != '%' &&
-		**format != 'n')
-		return (0);
+		**format != 'n' && **format != '%')
+			return (0);
 	f->conv = **format;
 	return (1);
 }
@@ -94,11 +99,8 @@ char	*ft_check_format(char **format, va_list *ap, flags *f, length *l)
 {
 	*format += 1;
 	if (!**format)
-	{
-		(*format)--;
 		return (NULL);
-	}
-	while (!ft_check_conv_type(format, f))
+	while (!ft_check_conv_type(format, f, l))
 	{
 		ft_check_length(format, l);
 		if (ft_check_flag(format, f))
@@ -111,7 +113,7 @@ char	*ft_check_format(char **format, va_list *ap, flags *f, length *l)
 			break ;
 	}
 	ft_check_length(format, l);
-	if (!ft_check_conv_type(format, f))
+	if (!ft_check_conv_type(format, f, l))
 		return(ft_invalid(format, f));
 	return (ft_build(ap, f, l));
 

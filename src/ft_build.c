@@ -21,13 +21,13 @@ char	*ft_build(va_list *ap, flags *f, length *l)
 	else if (f->conv == '%')
 		s = ft_pper();
 	else if (f->conv == 'e' || f->conv == 'E')
-		s = ft_pe(ap, f);
+		s = ft_pe(ap, f, l);
 	else if (f->conv == 'f' || f->conv == 'F')
-		s = ft_pf(ap, f);
+		s = ft_pf(ap, f, l);
 	else if (f->conv == 'p')
 		s = ft_pp(ap, f);
 	else
-		s = ft_pg(ap, f);
+		s = ft_pg(ap, f, l);
 	s = ft_min_width(s, f);
 	s = ft_flags(s, f);
 	// if (s && s[0] != 0)

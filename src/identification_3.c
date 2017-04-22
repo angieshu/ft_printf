@@ -9,21 +9,28 @@ char	*ft_pws(va_list *ap, flags *f)
 	char		*s;
 
 	s = ft_strnew(1);
-	type.ws = va_arg(*ap, wchar_t*);
-	if (!type.ws)
+	len = 0;
+	if (!(type.ws = va_arg(*ap, wchar_t*)))
 	{
 		if (f->precision > 0 && f->precision < 6)
 			return (ft_strsub("(null)", 0, f->precision));
 		else if (f->precision == 0)
-			return(NULL);
+		{
+			f->precision = -5;
+			return("");
+		}
 		f->precision = -5;
 			return ("(null)");
 	}
-	while ((len = ft_count_wsize(*type.ws)) > 0)
+	if (!ft_strlen((char*)(type.ws)) || f->precision == 0)
 	{
-		// printf("na");
-		// len = ft_count_wsize(*type.ws);
-		if ((len + ft_strlen(s)) > f->precision
+		f->precision = -5;
+		return ("");
+	}
+	while (*type.ws)
+	{
+		len = ft_count_wsize(*type.ws);
+		if ((len + ft_strlen(s)) >= f->precision
 			&& f->precision > 0)
 			break ;
 		tmp = ft_wprint(*type.ws);
@@ -31,7 +38,8 @@ char	*ft_pws(va_list *ap, flags *f)
 		s = ft_strjoin(tmp2, tmp);
 		++type.ws;
 	}
-	free(tmp);
+	if (tmp)
+		free(tmp);
 	return (s);
 }
 
@@ -42,18 +50,17 @@ char	*ft_ps(va_list *ap, flags *f, length *l)
 
 	if ((l->l == 1 && f->conv == 's') || f->conv == 'S')
 		return (ft_pws(ap, f));
-
-	type.s = va_arg(*ap, char*);
-	if (!type.s)
+	if (!(type.s = va_arg(*ap, char*)))
 	{
 		if (f->precision > 0 && f->precision < 6)
 			return (ft_strsub("(null)", 0, f->precision));
-		else if (f->precision == 0)
-			return(NULL);
 		f->precision = -5;
+		if (f->precision == 0)
+			return("");
 		return ("(null)");
 	}
-	i = ft_strlen(type.s);
+	if (!(i = ft_strlen(type.s)) && f->minus == 1 && f->min_width > 0)
+		f->total_size--;
 	if (f->precision == -1)
 		f->precision = i;
 	if (f->precision < i)
@@ -80,5 +87,12 @@ char	*ft_pp(va_list *ap, flags *f)
 	if (ft_strlen(tmp) < f->precision)
 		tmp = ft_precision(tmp, f->precision - ft_strlen(tmp));
 	s = ft_strjoin("0x", tmp);
+	if (f->zero == 1 && (f->min_width > ft_strlen(s)))
+	{
+		addr = f->min_width - ft_strlen(s);
+		while (addr-- > 0 && (tmp = s))
+			s = ft_strjoin(tmp, "0");
+	}
+	free(tmp);
 	return (s);
 }

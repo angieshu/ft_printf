@@ -5,7 +5,8 @@ char	*ft_invalid(char **format, flags *f)
 	char *s;
 	s = ft_strnew(1);
 	s[0] = **format;
-	return (ft_min_width(s, f));
+	s = ft_min_width(s, f);
+	return (ft_flags(s, f));
 }
 
 void	ft_star(va_list *ap, flags *f)
@@ -31,7 +32,7 @@ void	ft_zero_fl(char *s, char c, flags *f)
 		f->conv == 'o' || f->conv == 'O' || f->conv == 'u' || f->conv == 'U' ||
 		f->conv == 'x' || f->conv == 'X'))
 		return ;
-	while (!ft_isalnum(s[i]) && s[i])
+	while (!ft_isalnum(s[i]) && s[i] != '%' && s[i])
 	{
 		if (f->space == 1 && s[0] == ' ')
 			i++;
