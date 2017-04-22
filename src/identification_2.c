@@ -8,7 +8,7 @@ char	*ft_pe(va_list *ap, flags *f, length *l)
 	// if (l->L == 1)
 	// 	type.d = 
 	// type.d = va_arg(*ap, double);
-	type.d = (l->L = 1) ? (long double)va_arg(*ap, double) : va_arg(*ap, double);
+	type.ld = (l->L = 1) ? (long double)va_arg(*ap, double) : va_arg(*ap, double);
 	if (type.d == 0.0 && f->precision == 0)
 		return (ft_strnew(0));
 	if (f->precision == -1)
