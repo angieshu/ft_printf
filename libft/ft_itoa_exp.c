@@ -93,6 +93,8 @@ char		*ft_itoa_exp(long double nbr, int k)
 		nbr *= -1;
 		sign = -1;
 	}
+	if (nbr < 10 && nbr >= 1)
+		return(ft_zero(nbr, k));
 	if (nbr < 1)
 		return (ft_count_power_neg(nbr, k, sign));
 	return (ft_count_power(nbr, k, sign));
