@@ -14,12 +14,14 @@
 
 void	print_format(char **format, va_list *ap, flags *f, length *l)
 {
+	char	*tmp;
+
 	if (!(tmp = ft_check_format(format, ap, f, l)) && !**format)
-		return (f.total_size);
-	f.s_size += ft_strlen(tmp);
-	write(1, tmp, f.s_size);
-	f.total_size += f.s_size;
-	if (tmp && f.precision != -5)
+		return ;
+	f->s_size += ft_strlen(tmp);
+	write(1, tmp, f->s_size);
+	f->total_size += f->s_size;
+	if (tmp && f->precision != -5)
 		free(tmp);
 }
 
@@ -27,7 +29,6 @@ int		ft_readformat(char **format, va_list ap)
 {
 	flags	f;
 	length	l;
-	char	*tmp;
 
 	f.total_size = 0;
 	while (ft_strlen(*format) > 0 || **format)
