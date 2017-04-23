@@ -46,7 +46,8 @@ $(NAME): $(LOBJ) $(POBJ)
 	@ar rcs $(NAME) $(POBJ) $(LOBJ)
 
 clean:
-	@rm -rf *.o
+	@rm -rf $(PFDR)*.o
+	@rm -rf $(FTDR)*.o
 
 fclean: clean
 	@rm -rf $(NAME)

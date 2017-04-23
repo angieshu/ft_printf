@@ -44,9 +44,9 @@ static int	ft_minus(const char *str)
 
 long		ft_atoi(const char *str)
 {
-	int i;
-	int minus;
-	long number;
+	int		i;
+	int		minus;
+	long	number;
 
 	number = 0;
 	i = ft_spacing(str);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   identification_3.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ashulha <ashulha@student.us.org>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/23 00:38:24 by ashulha           #+#    #+#             */
+/*   Updated: 2017/04/23 00:38:27 by ashulha          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 char	*ft_null_s(flags *f)
@@ -7,7 +19,7 @@ char	*ft_null_s(flags *f)
 	else if (f->precision == 0)
 	{
 		f->precision = -5;
-		return("");
+		return ("");
 	}
 	f->precision = -5;
 	return ("(null)");

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_format.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ashulha <ashulha@student.us.org>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/23 00:47:14 by ashulha           #+#    #+#             */
+/*   Updated: 2017/04/23 00:47:17 by ashulha          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 int		ft_check_conv_type(char **format, flags *f, length *l)
@@ -116,5 +128,5 @@ char	*ft_check_format(char **format, va_list *ap, flags *f, length *l)
 	if (!ft_check_conv_type(format, f, l))
 		return(ft_invalid(format, f));
 	return (ft_build(ap, f, l));
-
 }
+

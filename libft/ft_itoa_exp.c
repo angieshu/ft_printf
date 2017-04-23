@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa_exp.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ashulha <ashulha@student.us.org>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/23 00:29:17 by ashulha           #+#    #+#             */
+/*   Updated: 2017/04/23 00:29:19 by ashulha          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static char *ft_zero(long double nbr, int k)
+static char	*ft_zero(long double nbr, int k)
 {
 	char *s;
 	char *tmp;
@@ -25,10 +37,10 @@ static int	ft_round(long double nbr, int k)
 
 static char	*ft_count_power(long double nbr, int k, int sign)
 {
-	int i;
-	char *s;
-	char *tmp;
-	
+	int		i;
+	char	*s;
+	char	*tmp;
+
 	i = 1;
 	if (nbr >= 10)
 	{
@@ -43,22 +55,19 @@ static char	*ft_count_power(long double nbr, int k, int sign)
 		nbr /= 10;
 	}
 	tmp = ft_itoa_double(nbr * sign, k);
-	if (ft_countnumber(i, 10) < 10)
-		s = ft_strjoin(tmp, "e+0");
-	else
-		s = ft_strjoin(tmp, "e+");
-	free(tmp);
+	s = (ft_countnumber(i, 10) < 10) ? ft_strjoin(tmp, "e+0") :
+		ft_strjoin(tmp, "e+");
 	tmp = s;
 	s = ft_strjoin(tmp, ft_itoa(i));
 	free(tmp);
 	return (s);
-} 
+}
 
 static char	*ft_count_power_neg(long double nbr, int k, int sign)
 {
-	int i;
-	char *s;
-	char *tmp;
+	int		i;
+	char	*s;
+	char	*tmp;
 
 	i = 1;
 	while ((nbr = nbr * 10) < 1)
@@ -69,15 +78,11 @@ static char	*ft_count_power_neg(long double nbr, int k, int sign)
 		nbr /= 10;
 	}
 	tmp = ft_itoa_double(nbr * sign, k);
-	if (ft_countnumber(i, 10) < 10)
-		s = ft_strjoin(tmp, "e-0");
-	else
-		s = ft_strjoin(tmp, "e-");
-	free(tmp);
+	s = (ft_countnumber(i, 10) < 10) ? ft_strjoin(tmp, "e-0") :
+		ft_strjoin(tmp, "e-");
 	tmp = s;
 	s = ft_strjoin(tmp, ft_itoa(i));
 	free(tmp);
-
 	return (s);
 }
 
@@ -94,7 +99,7 @@ char		*ft_itoa_exp(long double nbr, int k)
 		sign = -1;
 	}
 	if (nbr < 10 && nbr >= 1)
-		return(ft_zero(nbr, k));
+		return (ft_zero(nbr, k));
 	if (nbr < 1)
 		return (ft_count_power_neg(nbr, k, sign));
 	return (ft_count_power(nbr, k, sign));

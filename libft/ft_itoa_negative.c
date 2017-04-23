@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa_negative.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ashulha <ashulha@student.us.org>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/23 00:34:07 by ashulha           #+#    #+#             */
+/*   Updated: 2017/04/23 00:34:09 by ashulha          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static char *ft_octal(char *s)
+static char	*ft_octal(char *s)
 {
-	int i;
-	int p;
-	int j;
-	char *oct;
+	int		i;
+	int		p;
+	int		j;
+	char	*oct;
 
 	p = 3;
 	i = ft_strlen(s);
@@ -30,9 +42,10 @@ static char *ft_octal(char *s)
 
 static char	*ft_hex(char *s, int i)
 {
-	int p;
-	int j;
-	char *hex;
+	int		p;
+	int		j;
+	char	*hex;
+
 	p = 3;
 	j = i / 4;
 	if (i % 4 != 0)
@@ -56,8 +69,8 @@ static char	*ft_hex(char *s, int i)
 
 static char	*ft_conv(char *s, int b)
 {
-	int i;
-	char *tmp;
+	int		i;
+	char	*tmp;
 
 	tmp = NULL;
 	i = ft_strlen(s) - 1;
@@ -90,10 +103,10 @@ static void	help(char *s, char *tmp, int i, int len)
 
 char		*ft_itoa_negative(intmax_t v, int b)
 {
-	int i;
-	long len;
-	char *tmp;
-	char *s;
+	int		i;
+	long	len;
+	char	*tmp;
+	char	*s;
 
 	i = 64;
 	v = v * -1;

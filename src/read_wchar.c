@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_wchar.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ashulha <ashulha@student.us.org>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/23 00:40:43 by ashulha           #+#    #+#             */
+/*   Updated: 2017/04/23 00:40:45 by ashulha          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
-int	ft_count_wsize(unsigned warg)
+int		ft_count_wsize(unsigned warg)
 {
 	int size;
 
@@ -33,7 +45,7 @@ char	*ft_wprint(wint_t warg)
 	}
 	else
 		return (ft_wprint_1(warg));
-	return(s);
+	return (s);
 }
 
 char	*ft_wprint_1(wint_t warg)

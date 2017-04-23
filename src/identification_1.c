@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   identification_1.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ashulha <ashulha@student.us.org>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/23 00:41:33 by ashulha           #+#    #+#             */
+/*   Updated: 2017/04/23 00:41:34 by ashulha          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 char	*ft_pc(va_list *ap, flags *f, length *l)
 {
-
-	union data type;
-	char *s;
+	union data	type;
+	char		*s;
 
 	if ((l->l == 1 && f->conv == 'c') || f->conv == 'C')
 	{
@@ -77,8 +88,7 @@ char	*ft_po(va_list *ap, flags *f, length *l)
 	(f->hash == 1) ? f->precision-- : f->precision;
 	s = ft_itoa_unsigned(type.u, 8);
 	i = ft_strlen(s);
-	if (i < f->precision)
-		s = ft_precision(s, f->precision - i);
+	s = (i < f->precision) ? ft_precision(s, f->precision - i) : s;
 	if (f->hash == 1)
 	{
 		tmp = s;
@@ -105,8 +115,7 @@ char	*ft_px(va_list *ap, flags *f, length *l)
 	}
 	s = ft_itoa_unsigned(type.u, 16);
 	i = ft_strlen(s);
-	if (i < f->precision)
-		s = ft_precision(s, f->precision - i);
+	s = (i < f->precision) ? ft_precision(s, f->precision - i) : s;
 	if (f->hash == 1)
 	{
 		tmp = s;

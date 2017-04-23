@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flags_set.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ashulha <ashulha@student.us.org>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/23 00:39:44 by ashulha           #+#    #+#             */
+/*   Updated: 2017/04/23 00:39:46 by ashulha          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 int		ft_check_flag(char **format, flags *f)
@@ -21,10 +33,6 @@ int		ft_check_flag(char **format, flags *f)
 			f->space = 1;
 		else if (**format == '*')
 			f->star = 1;
-		// else if (**(format + i) == '$')
-		// 	f->dollar = 1;
-		// else if (**(format + i) == '\'')
-		// 	f->apostrophe = 1;
 		else
 			return (0);
 		*format += 1;
@@ -34,12 +42,6 @@ int		ft_check_flag(char **format, flags *f)
 
 char	*ft_flags(char *s, flags *f)
 {
-	// if (f->hash == 1)
-	// 	s = ft_hash(s, f);
-	// if (f->plus == 1)
-	// 	s = ft_plus(s, f);
-	// if (f->minus == 1)
-	// 	s = ft_minus(s);
 	if (f->space == 1)
 		s = ft_space(s, f);
 	if (f->zero == 1)
@@ -61,7 +63,7 @@ void	ft_reset(flags *f, length *l)
 	f->error = 0;
 	f->precision = -1;
 	f->min_width = -1;
-	f->conv = 0; 
+	f->conv = 0;
 	l->none = 0;
 	l->hh = 0;
 	l->h = 0;
@@ -69,4 +71,4 @@ void	ft_reset(flags *f, length *l)
 	l->ll = 0;
 	l->j = 0;
 	l->z = 0;
-} 
+}

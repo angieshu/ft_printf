@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa_negative_decimal.c                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ashulha <ashulha@student.us.org>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/23 00:36:55 by ashulha           #+#    #+#             */
+/*   Updated: 2017/04/23 00:36:57 by ashulha          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <stdio.h>
+
 char	*ft_itoa_negative_decimal(char *s)
 {
-	long long n;
-	int i;
-	int p;
+	long long	n;
+	int			i;
+	int			p;
 
 	n = 0;
 	p = 0;

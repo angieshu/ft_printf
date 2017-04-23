@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ashulha <ashulha@student.us.org>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/23 00:44:38 by ashulha           #+#    #+#             */
+/*   Updated: 2017/04/23 00:44:40 by ashulha          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFTPRINTF_H
 # define LIBFTPRINTF_H
 # include <stdarg.h>
@@ -98,6 +110,5 @@ char		*ft_extend_s(flags *f, char *s, int k, char left);
 
 int			add_len(flags *f);
 char		*ft_invalid(char **format, flags *f);
-
 
 #endif

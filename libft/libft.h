@@ -90,7 +90,7 @@ unsigned int		ft_lcm(unsigned int a, unsigned int b);
 void				ft_toupper_s(char *s);
 long				ft_countnumber(intmax_t v, int b);
 char				*ft_strrev(char *str);
-long				ft_power(long n, long pow);
+intmax_t			ft_power(intmax_t n, long pow);
 char				*ft_itoa_negative(intmax_t v, int b);
 char				*ft_itoa_negative_decimal(char *s);
 char				*ft_itoa_double(long double nbr, int k);
@@ -99,6 +99,5 @@ char				*ft_itoa_exp(long double nbr, int k);
 char				*ft_itoa_double_g(long double nbr, int k);
 char				*ft_itoa_signed(intmax_t num);
 char				*ft_itoa_unsigned(uintmax_t num, int base);
-
 
 #endif

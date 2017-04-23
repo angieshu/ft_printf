@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa_double_g.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ashulha <ashulha@student.us.org>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/23 00:31:17 by ashulha           #+#    #+#             */
+/*   Updated: 2017/04/23 00:31:19 by ashulha          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static char *pure_s(long double nbr, int k)
+static char	*pure_s(long double nbr, int k)
 {
-	int count;
-	uintmax_t n;
-	long double nbrcpy;
+	int			count;
+	uintmax_t	n;
+	long double	nbrcpy;
 
 	nbrcpy = nbr;
 	if (nbr == 0.0)
@@ -26,12 +38,12 @@ static char *pure_s(long double nbr, int k)
 	return (ft_itoa_exp(nbr, k - 1));
 }
 
-char	*ft_itoa_double_g(long double nbr, int k)
+char		*ft_itoa_double_g(long double nbr, int k)
 {
-	char *tmp;
-	char *s;
-	int i;
-	int dot;
+	char	*tmp;
+	char	*s;
+	int		i;
+	int		dot;
 
 	tmp = pure_s(nbr, k);
 	i = ft_strlen(tmp);
@@ -41,7 +53,7 @@ char	*ft_itoa_double_g(long double nbr, int k)
 		if (tmp[dot++] == '.')
 			break ;
 	}
-	if (dot	== i)
+	if (dot == i)
 		return (tmp);
 	while (i-- > dot)
 	{
