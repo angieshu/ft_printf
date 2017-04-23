@@ -59,7 +59,7 @@ typedef struct	s_length
 }				length;
 
 int				ft_printf(const char *restrict format, ...);
-void			print_format(char **format, va_list *ap, flags *f, length *l);
+int				print_format(char **format, va_list *ap, flags *f, length *l);
 int				ft_readformat(char **format, va_list ap);
 char			*ft_precision(char *tmp, int n);
 char			*ft_pd(va_list *ap, flags *f, length *l);
