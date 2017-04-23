@@ -27,7 +27,7 @@ char	*ft_extend_s(flags *f, char *s, int k, char left)
 	}
 	if (!ft_strlen(s))
 	{
-		write (1, s, 1);
+		write(1, s, 1);
 		if (f->conv == 'c' || f->conv == 'C')
 			f->s_size--;
 		f->total_size++;
@@ -42,8 +42,8 @@ char	*ft_extend_s(flags *f, char *s, int k, char left)
 
 char	*ft_min_width(char *s, flags *f)
 {
-	intmax_t i;
-	char *tmp;
+	intmax_t	i;
+	char		*tmp;
 
 	i = ft_strlen(s);
 	if ((f->conv == 'd' || f->conv == 'i' || f->conv == 'e' ||
@@ -58,6 +58,6 @@ char	*ft_min_width(char *s, flags *f)
 	if (i > f->min_width)
 		return (s);
 	if (f->minus == 1)
-			return (ft_extend_s(f, s, f->min_width - i, '-'));
+		return (ft_extend_s(f, s, f->min_width - i, '-'));
 	return (ft_extend_s(f, s, f->min_width - i, '+'));
 }

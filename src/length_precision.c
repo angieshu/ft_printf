@@ -50,9 +50,9 @@ uintmax_t	ft_conv_unsigned(va_list *ap, length *l)
 
 char		*ft_precision(char *tmp, int n)
 {
-	char *tmp2;
-	char *s;
-	intmax_t i;
+	char		*tmp2;
+	char		*s;
+	intmax_t	i;
 
 	i = 0;
 	tmp2 = ft_strnew(n);
@@ -65,7 +65,7 @@ char		*ft_precision(char *tmp, int n)
 		{
 			s[i] = '0';
 			s[0] = '-';
-			break;
+			break ;
 		}
 		i++;
 	}

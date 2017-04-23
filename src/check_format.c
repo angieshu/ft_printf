@@ -16,17 +16,16 @@ int		ft_check_conv_type(char **format, flags *f, length *l)
 {
 	if (**format == 'L')
 	{
-		l->L = 1;
+		l->lll = 1;
 		(*format)++;
 	}
 	if (**format != 's' && **format != 'd' && **format != 'i' &&
 		**format != 'o' && **format != 'S' && **format != 'p' &&
 		**format != 'D' && **format != 'O' && **format != 'u' &&
 		**format != 'U' && **format != 'x' && **format != 'X' &&
-		**format != 'c' && **format != 'C' && **format != 'g' &&
-		**format != 'G' && **format != 'f' && **format != 'F' &&
-		**format != 'e' && **format != 'E' && **format != '%' &&
-		**format != 'n' && **format != '%')
+		**format != 'c' && **format != 'C' && **format != 'f' &&
+		**format != 'F' && **format != 'e' && **format != 'E' &&
+		**format != '%' && **format != 'n' && **format != '%')
 			return (0);
 	f->conv = **format;
 	return (1);
