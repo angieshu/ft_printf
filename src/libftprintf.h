@@ -59,6 +59,8 @@ typedef struct	s_length
 }				length;
 
 int				ft_printf(const char *restrict format, ...);
+void			print_format(char **format, va_list *ap, flags *f, length *l);
+int				ft_readformat(char **format, va_list ap);
 char			*ft_precision(char *tmp, int n);
 char			*ft_pd(va_list *ap, flags *f, length *l);
 char			*ft_pc(va_list *ap, flags *f, length *l);
@@ -82,7 +84,6 @@ uintmax_t		ft_conv_unsigned(va_list *ap, length *l);
 char			*ft_identification(char *p, va_list ap, int precision);
 
 int				ft_count_num(char *p);
-int				ft_count_total_num (char *p);
 int				ft_count_flags(char *p);
 
 int				ft_check_flag(char **format, flags *f);

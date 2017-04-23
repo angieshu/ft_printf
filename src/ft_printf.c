@@ -12,26 +12,29 @@
 
 #include "libftprintf.h"
 
+void	print_format(char **format, va_list *ap, flags *f, length *l)
+{
+	if (!(tmp = ft_check_format(format, ap, f, l)) && !**format)
+		return (f.total_size);
+	f.s_size += ft_strlen(tmp);
+	write(1, tmp, f.s_size);
+	f.total_size += f.s_size;
+	if (tmp && f.precision != -5)
+		free(tmp);
+}
+
 int		ft_readformat(char **format, va_list ap)
 {
-	flags f;
-	length l;
-	char *tmp;
+	flags	f;
+	length	l;
+	char	*tmp;
 
 	f.total_size = 0;
 	while (ft_strlen(*format) > 0 || **format)
 	{
 		ft_reset(&f, &l);
 		if (**format == '%')
-		{
-			if (!(tmp = ft_check_format(format, (va_list*)ap, &f, &l)) && !**format)
-				return (f.total_size);
-			f.s_size += ft_strlen(tmp);
-			write (1, tmp, f.s_size);
-			f.total_size += f.s_size;
-			if (tmp && f.precision != -5)
-				free(tmp);
-		}
+			print_format(format, (va_list*)ap, &f, &l);
 		else
 		{
 			f.total_size++;
@@ -45,8 +48,8 @@ int		ft_readformat(char **format, va_list ap)
 
 int		ft_printf(const char *restrict format, ...)
 {
-	va_list ap;
-	int i;
+	va_list	ap;
+	int		i;
 
 	if (!format || !*format)
 		return (0);

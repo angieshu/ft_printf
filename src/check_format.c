@@ -26,7 +26,7 @@ int		ft_check_conv_type(char **format, flags *f, length *l)
 		**format != 'c' && **format != 'C' && **format != 'f' &&
 		**format != 'F' && **format != 'e' && **format != 'E' &&
 		**format != '%' && **format != 'n' && **format != '%')
-			return (0);
+		return (0);
 	f->conv = **format;
 	return (1);
 }
@@ -125,7 +125,6 @@ char	*ft_check_format(char **format, va_list *ap, flags *f, length *l)
 	}
 	ft_check_length(format, l);
 	if (!ft_check_conv_type(format, f, l))
-		return(ft_invalid(format, f));
+		return (ft_invalid(format, f));
 	return (ft_build(ap, f, l));
 }
-

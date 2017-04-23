@@ -47,7 +47,7 @@ $(NAME): $(LOBJ) $(POBJ)
 
 clean:
 	@rm -rf $(PFDR)*.o
-	@rm -rf $(FTDR)*.o
+	@rm -rf $(FTDR)*.o $(FTDR)libft.a
 
 fclean: clean
 	@rm -rf $(NAME)
