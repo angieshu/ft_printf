@@ -32,7 +32,7 @@ void	ft_zero_fl(char *s, char c, flags *f)
 		f->conv == 'o' || f->conv == 'O' || f->conv == 'u' || f->conv == 'U' ||
 		f->conv == 'x' || f->conv == 'X'))
 		return ;
-	while (!ft_isalnum(s[i]) && s[i] != '%' && s[i])
+	while (s[i] == ' ' || s[i] == '-' || s[i] == '+')
 	{
 		if (f->space == 1 && s[0] == ' ')
 			i++;

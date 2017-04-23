@@ -1,27 +1,28 @@
 #include "libftprintf.h"
 
+char	*ft_null_s(flags *f)
+{
+	if (f->precision > 0 && f->precision < 6)
+		return (ft_strsub("(null)", 0, f->precision));
+	else if (f->precision == 0)
+	{
+		f->precision = -5;
+		return("");
+	}
+	f->precision = -5;
+	return ("(null)");
+}
+
 char	*ft_pws(va_list *ap, flags *f)
 {
 	union data	type;
-	intmax_t	len;
 	char		*tmp;
 	char		*tmp2;
 	char		*s;
 
 	s = ft_strnew(1);
-	len = 0;
 	if (!(type.ws = va_arg(*ap, wchar_t*)))
-	{
-		if (f->precision > 0 && f->precision < 6)
-			return (ft_strsub("(null)", 0, f->precision));
-		else if (f->precision == 0)
-		{
-			f->precision = -5;
-			return("");
-		}
-		f->precision = -5;
-			return ("(null)");
-	}
+		return (ft_null_s(f));
 	if (!ft_strlen((char*)(type.ws)) || f->precision == 0)
 	{
 		f->precision = -5;
@@ -29,8 +30,7 @@ char	*ft_pws(va_list *ap, flags *f)
 	}
 	while (*type.ws)
 	{
-		len = ft_count_wsize(*type.ws);
-		if ((len + ft_strlen(s)) >= f->precision
+		if ((ft_count_wsize(*type.ws) + ft_strlen(s)) > f->precision
 			&& f->precision > 0)
 			break ;
 		tmp = ft_wprint(*type.ws);
@@ -38,8 +38,7 @@ char	*ft_pws(va_list *ap, flags *f)
 		s = ft_strjoin(tmp2, tmp);
 		++type.ws;
 	}
-	if (tmp)
-		free(tmp);
+	free(tmp);
 	return (s);
 }
 
@@ -51,14 +50,7 @@ char	*ft_ps(va_list *ap, flags *f, length *l)
 	if ((l->l == 1 && f->conv == 's') || f->conv == 'S')
 		return (ft_pws(ap, f));
 	if (!(type.s = va_arg(*ap, char*)))
-	{
-		if (f->precision > 0 && f->precision < 6)
-			return (ft_strsub("(null)", 0, f->precision));
-		f->precision = -5;
-		if (f->precision == 0)
-			return("");
-		return ("(null)");
-	}
+		return (ft_null_s(f));
 	if (!(i = ft_strlen(type.s)) && f->minus == 1 && f->min_width > 0)
 		f->total_size--;
 	if (f->precision == -1)

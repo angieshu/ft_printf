@@ -1,13 +1,11 @@
 #include "libftprintf.h"
 
-int		ft_readformat(char **format, char **s, va_list ap)
+int		ft_readformat(char **format, va_list ap)
 {
 	flags f;
 	length l;
 	char *tmp;
-	// char *tmp2;
 
-s = NULL;
 	f.total_size = 0;
 	while (ft_strlen(*format) > 0 || **format)
 	{
@@ -19,32 +17,16 @@ s = NULL;
 			f.s_size += ft_strlen(tmp);
 			write (1, tmp, f.s_size);
 			f.total_size += f.s_size;
-			//free(tmp);
-			// printf("%jd\n", f.total_size);
+			if (tmp && f.precision != -5)
+				free(tmp);
 		}
 		else
 		{
-			tmp = ft_strsub(*format, 0, 1);
 			f.total_size++;
-			write(1, tmp, 1);
-		//	free(tmp);
+			write(1, *format, 1);
 		}
-		if (tmp && f.precision != -5)
-			free(tmp);
-		// if (tmp)
-		// // {
-		// 	tmp2 = *s;
-		// 	*s = ft_strjoin(tmp2, tmp);
-		// // }
-		// if (*s[0] == 0 && !*format)
-		// {
-		// 	printf("lala\n");
-		// 	return (-1);
-		// }
 		if (*format)
 			*format += 1;
-		// f.s_size++;
-		// printf("s = %s", tmp);
 	}
 	return (f.total_size);
 }
@@ -52,19 +34,12 @@ s = NULL;
 int		ft_printf(const char *restrict format, ...)
 {
 	va_list ap;
-	char *s;
 	int i;
 
 	if (!format || !*format)
 		return (0);
-	s = ft_strnew(0);
 	va_start(ap, format);
-	i = ft_readformat((char**)&format, &s, ap);
+	i = ft_readformat((char**)&format, ap);
 	va_end(ap);
-	// if (!s)
-	// 	return (0);
-	// write(1, s, i);
-	if (s)
-		free(s);
 	return (i);
 }

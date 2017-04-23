@@ -64,8 +64,7 @@ char	*ft_po(va_list *ap, flags *f, length *l)
 	char		*s;
 	char		*tmp;
 
-	if (f->conv == 'O')
-		l->l = 1;
+	(f->conv == 'O') ? l->l = 1 : l->l;
 	type.u = ft_conv_unsigned(ap, l);
 	if (type.u == 0 && f->precision == 0 && f->hash != 1)
 		return (ft_strnew(0));
