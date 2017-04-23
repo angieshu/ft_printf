@@ -20,7 +20,7 @@ FTDR =		libft/
 
 PFFL =		check_format.c ft_printf.c identification_1.c identification_2.c identification_3.c \
  			count_position.c flags_set.c flags_others.c ft_build.c length_precision.c \
- 			read_wchar.c min_width.c
+ 			read_wchar.c min_width.c identification_4.c
 
 FTFL =		ft_atoi.c ft_isalnum.c ft_isdigit.c ft_isprint.c ft_itoa_double.c ft_itoa_double_g.c \
 			ft_itoa_exp.c ft_itoa_negative.c ft_power.c ft_putchar.c ft_putstr.c ft_strdup.c \

@@ -12,7 +12,7 @@
 
 #include "libftprintf.h"
 
-char	*ft_pe_long(va_list *ap, flags *f, length *l)
+char	*ft_pe_long(va_list *ap, flags *f)
 {
 	union data	type;
 	char		*s;
@@ -28,7 +28,7 @@ char	*ft_pe_long(va_list *ap, flags *f, length *l)
 	return (s);
 }
 
-char	*ft_pf_long(va_list *ap, flags *f, length *l)
+char	*ft_pf_long(va_list *ap, flags *f)
 {
 	union data	type;
 	char		*s;
@@ -42,7 +42,7 @@ char	*ft_pf_long(va_list *ap, flags *f, length *l)
 	return (s);
 }
 
-char	*ft_pg_long(va_list *ap, flags *f, length *l)
+char	*ft_pg_long(va_list *ap, flags *f)
 {
 	union data	type;
 	char		*s;
