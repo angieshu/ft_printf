@@ -12,7 +12,7 @@
 
 #include "libftprintf.h"
 
-intmax_t	ft_conv_len(va_list *ap, length *l)
+intmax_t	ft_conv_len(va_list *ap, t_length *l)
 {
 	if (l->l == 1)
 		return ((long)va_arg(*ap, intmax_t));
@@ -30,7 +30,7 @@ intmax_t	ft_conv_len(va_list *ap, length *l)
 		return ((int)va_arg(*ap, intmax_t));
 }
 
-uintmax_t	ft_conv_unsigned(va_list *ap, length *l)
+uintmax_t	ft_conv_unsigned(va_list *ap, t_length *l)
 {
 	if (l->l == 1)
 		return ((unsigned long)va_arg(*ap, uintmax_t));

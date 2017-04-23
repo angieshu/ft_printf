@@ -12,7 +12,7 @@
 
 #include "libftprintf.h"
 
-char	*ft_invalid(char **format, flags *f)
+char	*ft_invalid(char **format, t_flags *f)
 {
 	char *s;
 
@@ -22,7 +22,7 @@ char	*ft_invalid(char **format, flags *f)
 	return (ft_flags(s, f));
 }
 
-void	ft_star(va_list *ap, flags *f)
+void	ft_star(va_list *ap, t_flags *f)
 {
 	int width;
 
@@ -36,7 +36,7 @@ void	ft_star(va_list *ap, flags *f)
 		f->min_width = width;
 }
 
-void	place_zero(char *s, char c, flags *f)
+void	place_zero(char *s, char c, t_flags *f)
 {
 	int i;
 
@@ -63,7 +63,7 @@ void	place_zero(char *s, char c, flags *f)
 	}
 }
 
-void	ft_zero_fl(char *s, char c, flags *f)
+void	ft_zero_fl(char *s, char c, t_flags *f)
 {
 	if (f->precision >= 0 && (f->conv == 'd' || f->conv == 'D' || f->conv == 'i'
 		|| f->conv == 'o' || f->conv == 'O' || f->conv == 'u' || f->conv == 'U'
@@ -72,7 +72,7 @@ void	ft_zero_fl(char *s, char c, flags *f)
 	place_zero(s, c, f);
 }
 
-char	*ft_space(char *s, flags *f)
+char	*ft_space(char *s, t_flags *f)
 {
 	int i;
 

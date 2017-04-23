@@ -12,7 +12,7 @@
 
 #include "libftprintf.h"
 
-int		print_format(char **format, va_list *ap, flags *f, length *l)
+int		print_format(char **format, va_list *ap, t_flags *f, t_length *l)
 {
 	char	*tmp;
 
@@ -28,8 +28,8 @@ int		print_format(char **format, va_list *ap, flags *f, length *l)
 
 int		ft_readformat(char **format, va_list ap)
 {
-	flags	f;
-	length	l;
+	t_flags		f;
+	t_length	l;
 
 	f.total_size = 0;
 	while (ft_strlen(*format) > 0 || **format)

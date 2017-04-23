@@ -12,7 +12,7 @@
 
 #include "libftprintf.h"
 
-int		ft_check_conv_type(char **format, flags *f, length *l)
+int		ft_check_conv_type(char **format, t_flags *f, t_length *l)
 {
 	if (**format == 'L')
 	{
@@ -31,7 +31,7 @@ int		ft_check_conv_type(char **format, flags *f, length *l)
 	return (1);
 }
 
-int		ft_check_minwith(char **format, va_list *ap, flags *f)
+int		ft_check_minwith(char **format, va_list *ap, t_flags *f)
 {
 	int i;
 
@@ -51,7 +51,7 @@ int		ft_check_minwith(char **format, va_list *ap, flags *f)
 	return (0);
 }
 
-int		ft_check_precision(va_list *ap, char **format, flags *f)
+int		ft_check_precision(va_list *ap, char **format, t_flags *f)
 {
 	if (**format == '.')
 	{
@@ -77,7 +77,7 @@ int		ft_check_precision(va_list *ap, char **format, flags *f)
 	return (0);
 }
 
-void	ft_check_length(char **f, length *l)
+void	ft_check_t_length(char **f, t_length *l)
 {
 	if (**f == 'h')
 	{
@@ -106,14 +106,14 @@ void	ft_check_length(char **f, length *l)
 	l->none = 1;
 }
 
-char	*ft_check_format(char **format, va_list *ap, flags *f, length *l)
+char	*ft_check_format(char **format, va_list *ap, t_flags *f, t_length *l)
 {
 	*format += 1;
 	if (!**format)
 		return (NULL);
 	while (!ft_check_conv_type(format, f, l))
 	{
-		ft_check_length(format, l);
+		ft_check_t_length(format, l);
 		if (ft_check_flag(format, f))
 			continue ;
 		else if (ft_check_minwith(format, ap, f))
@@ -123,7 +123,7 @@ char	*ft_check_format(char **format, va_list *ap, flags *f, length *l)
 		else
 			break ;
 	}
-	ft_check_length(format, l);
+	ft_check_t_length(format, l);
 	if (!ft_check_conv_type(format, f, l))
 		return (ft_invalid(format, f));
 	return (ft_build(ap, f, l));

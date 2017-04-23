@@ -12,7 +12,7 @@
 
 #include "libftprintf.h"
 
-char	*ft_extend_s(flags *f, char *s, int k, char left)
+char	*ft_extend_s(t_flags *f, char *s, int k, char left)
 {
 	char *tmp;
 
@@ -40,7 +40,7 @@ char	*ft_extend_s(flags *f, char *s, int k, char left)
 	return (s);
 }
 
-char	*ft_min_width(char *s, flags *f)
+char	*ft_min_width(char *s, t_flags *f)
 {
 	intmax_t	i;
 	char		*tmp;

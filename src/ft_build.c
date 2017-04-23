@@ -12,7 +12,7 @@
 
 #include "libftprintf.h"
 
-char	*ft_conv(va_list *ap, flags *f, length *l)
+char	*ft_conv(va_list *ap, t_flags *f, t_length *l)
 {
 	if (f->conv == 's' || f->conv == 'S')
 		return (ft_ps(ap, f, l));
@@ -37,7 +37,7 @@ char	*ft_conv(va_list *ap, flags *f, length *l)
 	return (ft_pg(ap, f, l));
 }
 
-char	*ft_build(va_list *ap, flags *f, length *l)
+char	*ft_build(va_list *ap, t_flags *f, t_length *l)
 {
 	char *s;
 

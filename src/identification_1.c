@@ -12,10 +12,10 @@
 
 #include "libftprintf.h"
 
-char	*ft_pc(va_list *ap, flags *f, length *l)
+char	*ft_pc(va_list *ap, t_flags *f, t_length *l)
 {
-	union data	type;
-	char		*s;
+	union u_data	type;
+	char			*s;
 
 	if ((l->l == 1 && f->conv == 'c') || f->conv == 'C')
 	{
@@ -40,11 +40,11 @@ char	*ft_pc(va_list *ap, flags *f, length *l)
 	return (s);
 }
 
-char	*ft_pd(va_list *ap, flags *f, length *l)
+char	*ft_pd(va_list *ap, t_flags *f, t_length *l)
 {
-	union data	type;
-	intmax_t	i;
-	char		*s;
+	union u_data	type;
+	intmax_t		i;
+	char			*s;
 
 	if (f->conv == 'D')
 		l->l = 1;
@@ -68,12 +68,12 @@ char	*ft_pd(va_list *ap, flags *f, length *l)
 	return (s);
 }
 
-char	*ft_po(va_list *ap, flags *f, length *l)
+char	*ft_po(va_list *ap, t_flags *f, t_length *l)
 {
-	union data	type;
-	intmax_t	i;
-	char		*s;
-	char		*tmp;
+	union u_data	type;
+	intmax_t		i;
+	char			*s;
+	char			*tmp;
 
 	(f->conv == 'O') ? l->l = 1 : l->l;
 	type.u = ft_conv_unsigned(ap, l);
@@ -97,12 +97,12 @@ char	*ft_po(va_list *ap, flags *f, length *l)
 	return (s);
 }
 
-char	*ft_px(va_list *ap, flags *f, length *l)
+char	*ft_px(va_list *ap, t_flags *f, t_length *l)
 {
-	union data	type;
-	intmax_t	i;
-	char		*s;
-	char		*tmp;
+	union u_data	type;
+	intmax_t		i;
+	char			*s;
+	char			*tmp;
 
 	type.u = ft_conv_unsigned(ap, l);
 	if (type.u == 0 && f->precision == 0)

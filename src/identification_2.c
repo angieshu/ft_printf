@@ -12,10 +12,10 @@
 
 #include "libftprintf.h"
 
-char	*ft_pe(va_list *ap, flags *f, length *l)
+char	*ft_pe(va_list *ap, t_flags *f, t_length *l)
 {
-	union data	type;
-	char		*s;
+	union u_data	type;
+	char			*s;
 
 	if (l->lll == 1)
 		return (ft_pe_long(ap, f));
@@ -30,11 +30,11 @@ char	*ft_pe(va_list *ap, flags *f, length *l)
 	return (s);
 }
 
-char	*ft_pu(va_list *ap, flags *f, length *l)
+char	*ft_pu(va_list *ap, t_flags *f, t_length *l)
 {
-	union data	type;
-	intmax_t	i;
-	char		*s;
+	union u_data	type;
+	intmax_t		i;
+	char			*s;
 
 	if (f->conv == 'U')
 		l->l = 1;
@@ -63,10 +63,10 @@ char	*ft_pper(void)
 	return (s);
 }
 
-char	*ft_pf(va_list *ap, flags *f, length *l)
+char	*ft_pf(va_list *ap, t_flags *f, t_length *l)
 {
-	union data	type;
-	char		*s;
+	union u_data	type;
+	char			*s;
 
 	if (l->lll == 1)
 		return (ft_pf_long(ap, f));
@@ -79,10 +79,10 @@ char	*ft_pf(va_list *ap, flags *f, length *l)
 	return (s);
 }
 
-char	*ft_pg(va_list *ap, flags *f, length *l)
+char	*ft_pg(va_list *ap, t_flags *f, t_length *l)
 {
-	union data	type;
-	char		*s;
+	union u_data	type;
+	char			*s;
 
 	if (l->lll == 1)
 		return (ft_pg_long(ap, f));

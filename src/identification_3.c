@@ -12,7 +12,7 @@
 
 #include "libftprintf.h"
 
-char	*ft_null_s(flags *f)
+char	*ft_null_s(t_flags *f)
 {
 	if (f->precision > 0 && f->precision < 6)
 		return (ft_strsub("(null)", 0, f->precision));
@@ -25,12 +25,12 @@ char	*ft_null_s(flags *f)
 	return ("(null)");
 }
 
-char	*ft_pws(va_list *ap, flags *f)
+char	*ft_pws(va_list *ap, t_flags *f)
 {
-	union data	type;
-	char		*tmp;
-	char		*tmp2;
-	char		*s;
+	union u_data	type;
+	char			*tmp;
+	char			*tmp2;
+	char			*s;
 
 	s = ft_strnew(1);
 	if (!(type.ws = va_arg(*ap, wchar_t*)))
@@ -54,10 +54,10 @@ char	*ft_pws(va_list *ap, flags *f)
 	return (s);
 }
 
-char	*ft_ps(va_list *ap, flags *f, length *l)
+char	*ft_ps(va_list *ap, t_flags *f, t_length *l)
 {
-	union data	type;
-	intmax_t	i;
+	union u_data	type;
+	intmax_t		i;
 
 	if ((l->l == 1 && f->conv == 's') || f->conv == 'S')
 		return (ft_pws(ap, f));
@@ -72,7 +72,7 @@ char	*ft_ps(va_list *ap, flags *f, length *l)
 	return (ft_strdup(type.s));
 }
 
-char	*ft_pp(va_list *ap, flags *f)
+char	*ft_pp(va_list *ap, t_flags *f)
 {
 	uintmax_t	addr;
 	char		*tmp;

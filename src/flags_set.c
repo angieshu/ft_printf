@@ -12,7 +12,7 @@
 
 #include "libftprintf.h"
 
-int		ft_check_flag(char **format, flags *f)
+int		ft_check_flag(char **format, t_flags *f)
 {
 	int i;
 
@@ -40,7 +40,7 @@ int		ft_check_flag(char **format, flags *f)
 	return (1);
 }
 
-char	*ft_flags(char *s, flags *f)
+char	*ft_flags(char *s, t_flags *f)
 {
 	if (f->space == 1)
 		s = ft_space(s, f);
@@ -51,7 +51,7 @@ char	*ft_flags(char *s, flags *f)
 	return (s);
 }
 
-void	ft_reset(flags *f, length *l)
+void	ft_reset(t_flags *f, t_length *l)
 {
 	f->plus = 0;
 	f->minus = 0;
