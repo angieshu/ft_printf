@@ -17,7 +17,9 @@ char	*ft_pe(va_list *ap, flags *f, length *l)
 	union data	type;
 	char		*s;
 
-	type.d = (l->lll = 1) ? (long double)va_arg(*ap, double) : va_arg(*ap, double);
+	if (l->lll == 1)
+		return (ft_pe_long(ap, f, l));
+	type.d = va_arg(*ap, double);
 	if (type.d == 0.0 && f->precision == 0)
 		return (ft_strnew(0));
 	if (f->precision == -1)
@@ -66,7 +68,9 @@ char	*ft_pf(va_list *ap, flags *f, length *l)
 	union data	type;
 	char		*s;
 
-	type.d = (l->lll = 1) ? (long double)va_arg(*ap, double) : va_arg(*ap, double);
+	if (l->lll == 1)
+		return (ft_pf_long(ap, f, l));
+	type.d = va_arg(*ap, double);
 	if (type.d == 0.0 && f->precision == 0)
 		return (ft_strnew(0));
 	if (f->precision == -1)
@@ -80,7 +84,9 @@ char	*ft_pg(va_list *ap, flags *f, length *l)
 	union data	type;
 	char		*s;
 
-	type.ld = (l->lll = 1) ? (long double)va_arg(*ap, double) : va_arg(*ap, double);
+	if (l->lll == 1)
+		return (ft_pg_long(ap, f, l));
+	type.d = va_arg(*ap, double);
 	if (type.d == 0.0 && f->precision == 0)
 		return (ft_strnew(0));
 	if (f->precision == -1)

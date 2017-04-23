@@ -20,7 +20,7 @@
 # include "../libft/libft.h"
 # include <stdio.h>
 
-union data
+union			data
 {
 	intmax_t	i;
 	uintmax_t	u;
@@ -29,9 +29,9 @@ union data
 	double		d;
 	long double	ld;
 	char		*s;
-};
+}				u_data;
 
-typedef struct
+typedef struct	s_flags
 {
 	int			plus;
 	int			minus;
@@ -46,7 +46,7 @@ typedef struct
 	uintmax_t	total_size;
 }				flags;
 
-typedef struct
+typedef struct	s_length
 {
 	int			none;
 	int			hh;
@@ -69,6 +69,9 @@ char			*ft_ps(va_list *ap, flags *f, length *l);
 char			*ft_pe(va_list *ap, flags *f, length *l);
 char			*ft_pf(va_list *ap, flags *f, length *l);
 char			*ft_pg(va_list *ap, flags *f, length *l);
+char			*ft_pe_long(va_list *ap, flags *f, length *l);
+char			*ft_pf_long(va_list *ap, flags *f, length *l);
+char			*ft_pg_long(va_list *ap, flags *f, length *l);
 char			*ft_pws(va_list *ap, flags *f);
 char			*ft_pp(va_list *ap, flags *f);
 char			*ft_pper(void);
