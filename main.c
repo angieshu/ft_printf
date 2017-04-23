@@ -12,6 +12,6 @@ int main ()
 
 	// printf("%d %d\n", i, j);
 
-	printf("%e\n", 9.000000e+00);
-	ft_printf("%e\n", 9.000000e+00);
+	printf("%s\n", ft_itoa_double_g(-342.3, 2));
+	ft_printf("%g\n", -342.3);
 }
