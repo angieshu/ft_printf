@@ -6,12 +6,20 @@ Regardless of the programming language considered, the printf function,(or its e
 
 Within Mantadory part impplemented:
 • Conversions: sSpdDioOuUxXcC
+
 • Also %%
+
 • Flags #0-+ and space
+
 • Minimum field-width
+
 • Precision
+
 • Flags hh, h, l, ll, j, et z.
+
 
 Bonuses:
 • More detailed conversions management: eE, fF.
+
 • More detailed flags management: *.
+
