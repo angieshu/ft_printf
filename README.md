@@ -19,6 +19,7 @@ Within Mantadory part impplemented:
 
 
 Bonuses:
+
 • More detailed conversions management: eE, fF.
 
 • More detailed flags management: *.
